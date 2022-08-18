@@ -11,29 +11,7 @@ import TextFieldsIcon from '@mui/icons-material/TextFields';
 
 
 export default function Header() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-        >
-        </Menu>
-    );
 
 
     return (
@@ -60,7 +38,6 @@ export default function Header() {
                         <IconButton
                             size="large"
                             edge="end"
-                            onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
                             <TextFieldsIcon />
@@ -68,7 +45,6 @@ export default function Header() {
                     </Box>
                 </Toolbar>
             </AppBar>
-            {renderMenu}
         </Box>
     );
 }
