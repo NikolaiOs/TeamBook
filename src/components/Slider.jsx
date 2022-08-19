@@ -31,14 +31,8 @@ export default function InputSlider() {
     };
 
     return (
-        <Box sx={{ width: 250 }}>
-            <Typography id="input-slider" gutterBottom>
-                Volume
-            </Typography>
+        <Box sx={{ width: '90%' }}>
             <Grid container spacing={2} alignItems="center">
-                <Grid item>
-                    <VolumeUp />
-                </Grid>
                 <Grid item xs>
                     <Slider
                         value={typeof value === 'number' ? value : 0}

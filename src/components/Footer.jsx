@@ -10,13 +10,9 @@ import InputSlider from "./Slider";
 const Footer = () => {
     return (
         <>
-            <Box component='footer' sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center'}}>
-                <InputSlider/>
-
-                <Button style={{borderRadius: 30, position: "absolute", bottom: '-185px'}} color='secondary'>написать комментарий</Button>
-
+            <Box component='footer' sx={{flexGrow: 1, display: 'flex', justifyContent: 'center'}}>
+                <Button style={{borderRadius: 30, backgroundColor: '#A7A7A7', color: 'black'}}>написать комментарий</Button>
             </Box>
-
         </>
     );
 };

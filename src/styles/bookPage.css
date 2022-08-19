@@ -1,12 +1,4 @@
 main {
-    display: list-item;
-    justify-content: space-between;
-    column-count: 2;
-    column-gap: 64px;
-    overflow: hidden;
-    height: 772px;
-    text-align: justify;
-
-
+display: flex;
 }
 
