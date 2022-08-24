@@ -16,8 +16,8 @@ const Reader = () => {
     const main = document.getElementById('main');
 
     useEffect(() => {
-        dispatch(loadBooks())}, []
-    )
+        dispatch(loadBooks())}, [dispatch]
+    );
 
     const scroll = () => {
         main.scrollLeft += 600;
@@ -37,6 +37,7 @@ const Reader = () => {
         return (
             <div>
                 <h2>Ошибка</h2>
+                <button onClick={() => dispatch(loadBooks())}>Перезагрузить страницу</button>
             </div>
         )
     }
@@ -51,7 +52,7 @@ const Reader = () => {
                             <div className="reader__header-nav-left">
                                 <NavLink className="header-nav-left__link" to="/">
                                     <svg width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="24" fill="#fff"/>
-                                        <g clip-path="url(#a)"><path d="m27.793 12.293-11 11a1 1 0 0 0 0 1.414l11 11a1 1 0 0 0 1.414-1.414L18.914 24l10.293-10.293a1 1 0 0 0-1.414-1.414Z" fill="#000"/>
+                                        <g clipPath="url(#a)"><path d="m27.793 12.293-11 11a1 1 0 0 0 0 1.414l11 11a1 1 0 0 0 1.414-1.414L18.914 24l10.293-10.293a1 1 0 0 0-1.414-1.414Z" fill="#000"/>
                                         </g><defs><clipPath id="a"><path fill="#fff" transform="rotate(-90 23.5 12.5)" d="M0 0h24v24H0z"/></clipPath></defs>
                                     </svg>
                                 </NavLink>
@@ -72,7 +73,7 @@ const Reader = () => {
                                 <div className="header-nav-right__item">
                                     <svg width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="24" cy="24" r="24" fill="#fff"/>
-                                        <g clip-path="url(#a)">
+                                        <g clipPath="url(#a)">
                                             <path d="M31.688 21.526a3.793 3.793 0 0 0-2.663 1.06.718.718 0 1 0 1.012 1.021 2.347 2.347 0 0 1 1.65-.643c1.19 0 2.157.806 2.157 1.797v.648a3.842 3.842 0 0 0-2.157-.648c-1.981 0-3.593 1.45-3.593 3.234 0 1.783 1.612 3.234 3.593 3.234a3.833 3.833 0 0 0 2.217-.691.718.718 0 0 0 1.377-.288v-5.49c0-1.783-1.612-3.234-3.593-3.234Zm0 8.266c-1.19 0-2.157-.806-2.157-1.797 0-.99.968-1.797 2.157-1.797 1.188 0 2.156.806 2.156 1.797 0 .99-.968 1.797-2.157 1.797Zm-6.302-3.477v-.002l-2.282-4.31-2.281-4.308a.718.718 0 0 0-1.27 0l-4.563 8.618-.001.002-1.905 3.599a.719.719 0 1 0 1.27.672l1.7-3.211h8.267l1.7 3.211a.719.719 0 0 0 1.27-.672l-1.905-3.599Zm-8.57-.378 3.372-6.37 3.372 6.37h-6.745Z" fill="#000"/>
                                         </g>
                                         <defs>
@@ -89,19 +90,18 @@ const Reader = () => {
             </section>
                 <Button onClick={scrollBack}><img src='Vector.svg' alt=''/></Button>
                 <Container>
-                    <div className='chapter'>
-                        <h4>Льюис Кэролл</h4>
-                        <h4>Алиса в стране чудес</h4>
-                    </div>
-                    <Box id='main' whiteSpace='pre-line' sx={{columnCount: 2,
+                    {getBook.map((book) => (
+                        <Box id='main' whiteSpace='pre-line' sx={{columnCount: 2,
                         columnGap: '64px',
                         overflow: 'hidden',
                         height: '772px',
                         columnWidth: '544px',
                         textAlign: 'justify'}}>
                         <CssBaseline/>
-
-                    </Box>
+                        <h2>{book.name}</h2>
+                            <p>{book.description}</p>
+                        </Box>
+                        ))}
                 </Container>
                 <Button onClick={scroll}><img src='Vector2.svg' alt=''/></Button>
             <Box component='footer' sx={{flexGrow: 1, display: 'flex', justifyContent: 'center'}}>

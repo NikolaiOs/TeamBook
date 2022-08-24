@@ -36,11 +36,13 @@ export const loadBooks = () => {
     return async dispatch => {
         dispatch(getLoading())
         try {
-            const response = await fetch('./public/Book.txt');
+            const response = await fetch('http://openlibrary.org/people/george08/lists/OL97L.json'
+        );
             if (!response.ok) {
                 throw new Error(`Request failed with status ${response.status}`);
             }
             const data = await response.json();
+            console.log(data)
             dispatch(getBooks(data))
         } catch (e) {
             dispatch(getError(e))

@@ -1,6 +1,6 @@
-import thunk from 'Redux-thunk';
-import {createStore, combineReducers, applyMiddleware} from "Redux";
-import {createLogger} from "Redux-logger/src";
+import thunk from 'redux-thunk';
+import {createStore, combineReducers, applyMiddleware} from "redux";
+import {createLogger} from "redux-logger/src";
 import {bookReducer} from "./reducers/bookReducer/bookReducer";
 
 const logger = createLogger({
