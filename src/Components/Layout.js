@@ -2,6 +2,8 @@ import React from "react";
 import "../Styles/layout.css"
 import { NavLink, Outlet } from "react-router-dom";
 
+
+
 const Layout = () => {
     return (
         <>
@@ -46,7 +48,9 @@ const Layout = () => {
                 </div>
             </header>
             <Outlet/>
-            <footer>2022</footer>
+            <footer>
+            2022
+            </footer>
         </>
     )
 }

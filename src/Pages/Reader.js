@@ -1,8 +1,47 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "../Styles/reader.css"
 import {NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import {Container, CssBaseline} from "@mui/material";
+import {error, getBookSelector, loader} from "../Redux/reducers/bookReducer/bookSelector";
+import {loadBooks} from "../Redux/reducers/bookReducer/bookReducer";
 
 const Reader = () => {
+    const getBook = useSelector(getBookSelector)
+    const dispatch = useDispatch();
+    const loading = useSelector(loader);
+    const err = useSelector(error);
+    const main = document.getElementById('main');
+
+    useEffect(() => {
+        dispatch(loadBooks())}, []
+    )
+
+    const scroll = () => {
+        main.scrollLeft += 600;
+    }
+
+    const scrollBack = () => {
+        main.scrollLeft += -600;
+    }
+
+    if(loading) {
+        return (
+            <div><h2>Загрузка</h2></div>
+        )
+    }
+
+    if(err) {
+        return (
+            <div>
+                <h2>Ошибка</h2>
+            </div>
+        )
+    }
+
+
     return (
         <>
             <section className="reader">
@@ -48,6 +87,26 @@ const Reader = () => {
                     </div>
                 </div>
             </section>
+                <Button onClick={scrollBack}><img src='Vector.svg' alt=''/></Button>
+                <Container>
+                    <div className='chapter'>
+                        <h4>Льюис Кэролл</h4>
+                        <h4>Алиса в стране чудес</h4>
+                    </div>
+                    <Box id='main' whiteSpace='pre-line' sx={{columnCount: 2,
+                        columnGap: '64px',
+                        overflow: 'hidden',
+                        height: '772px',
+                        columnWidth: '544px',
+                        textAlign: 'justify'}}>
+                        <CssBaseline/>
+
+                    </Box>
+                </Container>
+                <Button onClick={scroll}><img src='Vector2.svg' alt=''/></Button>
+            <Box component='footer' sx={{flexGrow: 1, display: 'flex', justifyContent: 'center'}}>
+                <Button style={{borderRadius: 30, backgroundColor: '#A7A7A7', color: 'black'}}>написать комментарий</Button>
+            </Box>
         </>
     )
 }
