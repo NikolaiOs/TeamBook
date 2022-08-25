@@ -89,7 +89,7 @@ const Reader = () => {
                 </div>
             </section>
 
-                <Container sx={{ display: 'flex' }}>
+                <Container sx={{ display: 'flex', justifyContent: 'space-between'}}>
                     <Button onClick={scrollBack}><img src='Vector.svg' alt=''/></Button>
                         <Box id='main' whiteSpace='pre-line'> {/*sx={{columnCount: 2,*/}
                         {/*columnGap: '64px',*/}
