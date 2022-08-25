@@ -2,7 +2,7 @@ import {ERROR_BOOKS, GET_BOOKS, LOADING_BOOKS} from "../../actionTypes";
 import {getError, getLoading, getBooks} from "../../action";
 
 const initialState = {
-    bookList: [],
+    bookList: {},
     loader: false,
     error: null
 };
@@ -33,11 +33,12 @@ export const bookReducer = (state = initialState, action) => {
 }
 
 export const loadBooks = () => {
+
+
     return async dispatch => {
         dispatch(getLoading())
         try {
-            const response = await fetch('http://openlibrary.org/people/george08/lists/OL97L.json'
-        );
+            const response = await fetch('https://catfact.ninja/fact?max_length=5000');
             if (!response.ok) {
                 throw new Error(`Request failed with status ${response.status}`);
             }

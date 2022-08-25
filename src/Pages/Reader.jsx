@@ -16,7 +16,7 @@ const Reader = () => {
     const main = document.getElementById('main');
 
     useEffect(() => {
-        dispatch(loadBooks())}, [dispatch]
+        dispatch(loadBooks())}, []
     );
 
     const scroll = () => {
@@ -88,22 +88,22 @@ const Reader = () => {
                     </div>
                 </div>
             </section>
-                <Button onClick={scrollBack}><img src='Vector.svg' alt=''/></Button>
-                <Container>
-                    {getBook.map((book) => (
-                        <Box id='main' whiteSpace='pre-line' sx={{columnCount: 2,
-                        columnGap: '64px',
-                        overflow: 'hidden',
-                        height: '772px',
-                        columnWidth: '544px',
-                        textAlign: 'justify'}}>
+
+                <Container sx={{ display: 'flex' }}>
+                    <Button onClick={scrollBack}><img src='Vector.svg' alt=''/></Button>
+                        <Box id='main' whiteSpace='pre-line'> {/*sx={{columnCount: 2,*/}
+                        {/*columnGap: '64px',*/}
+                        {/*overflow: 'hidden',*/}
+                        {/*height: '772px',*/}
+                        {/*columnWidth: '544px',*/}
+                        {/*textAlign: 'justify'}}>*/}
                         <CssBaseline/>
-                        <h2>{book.name}</h2>
-                            <p>{book.description}</p>
+                        <h2>{getBook.length}</h2>
+                            <p>{getBook.fact}</p>
                         </Box>
-                        ))}
+                    <Button onClick={scroll}><img src='Vector2.svg' alt=''/></Button>
                 </Container>
-                <Button onClick={scroll}><img src='Vector2.svg' alt=''/></Button>
+
             <Box component='footer' sx={{flexGrow: 1, display: 'flex', justifyContent: 'center'}}>
                 <Button style={{borderRadius: 30, backgroundColor: '#A7A7A7', color: 'black'}}>написать комментарий</Button>
             </Box>
