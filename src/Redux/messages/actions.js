@@ -1,5 +1,5 @@
 import { onValue, set } from "firebase/database";
-import { getMessageRefById, getMsgsRefByChatId, getReplyRefByMsgId } from "../../services/firebase";
+import { getMessageRefById, getMsgsRefByChatId, getReplyRefByMsgId } from "../../Services/firebase";
 import { selectIsReply } from "./selectors";
 
 export const SHOW_MESSAGES = "MESSAGES::SHOW_LIST";

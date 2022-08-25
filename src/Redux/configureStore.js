@@ -1,8 +1,11 @@
 import thunk from 'redux-thunk';
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { createLogger } from "redux-logger/src";
 import { bookReducer } from "./reducers/bookReducer/bookReducer";
-import { messagesReducer } from '../../../teambook — копия/src/store/messages/reducer';
+import { messagesReducer } from './messages/reducer';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 
 const logger = createLogger({
     collapsed: true,
@@ -15,5 +18,5 @@ const rootReducer = combineReducers({
 })
 
 
-export const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, logger)));
 
