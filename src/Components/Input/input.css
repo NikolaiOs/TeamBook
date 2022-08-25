@@ -1,0 +1,12 @@
+.input {
+  margin: 0 auto;
+  padding: 10%;
+  border-radius: 15px;
+  font-size: 95%;
+}
+
+.input__form {
+  max-width: 1120px;
+  width: 100%;
+  padding: 2% 3%;
+}

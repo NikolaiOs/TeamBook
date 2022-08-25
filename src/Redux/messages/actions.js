@@ -39,7 +39,7 @@ export const handleSendMessage = (value, bookPageId, msgId) => async (dispatch) 
         date: now
     };
     // добавление сообщения в firebase
-    if (msgId !== null) {
+    if (msgId != null) {
         set(getReplyRefByMsgId(bookPageId, msgId, newMsg.id), newMsg);
     } else set(getMessageRefById(bookPageId, newMsg.id), newMsg);
 }

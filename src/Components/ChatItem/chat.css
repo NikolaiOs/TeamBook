@@ -1,0 +1,13 @@
+.chat__form {
+  margin: 0 auto;
+  -webkit-box-flex: 8;
+      -ms-flex-positive: 8;
+          flex-grow: 8;
+  margin-top: 10vh;
+  width: 45%;
+  font-size: 100%;
+}
+
+.flex {
+  display: flex;
+}
