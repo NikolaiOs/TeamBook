@@ -1,0 +1,15 @@
+.signForm {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    row-gap: 15%;
+    grid-template-rows: repeat(3, 1fr) 2fr;
+}
+
+.left-column {
+    grid-column-start: 1
+}
+
+.right-column {
+    grid-column-start: 2
+}
+

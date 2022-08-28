@@ -1,10 +1,11 @@
-import {ERROR_BOOKS, GET_BOOKS, LOADING_BOOKS} from "../../actionTypes";
-import {getError, getLoading, getBooks} from "../../action";
+import { ERROR_BOOKS, GET_BOOKS, LOADING_BOOKS, PAGE_ID_BOOKS } from "../../actionTypes";
+import { getError, getLoading, getBooks } from "../../action";
 
 const initialState = {
     bookList: {},
     loader: false,
-    error: null
+    error: null,
+    bookPageId: 10
 };
 
 
@@ -26,6 +27,11 @@ export const bookReducer = (state = initialState, action) => {
                 ...state,
                 loader: false,
                 error: action.payload
+            }
+        case PAGE_ID_BOOKS:
+            return {
+                ...state,
+                bookPageId: action.payload
             }
         default:
             return state
