@@ -5,9 +5,10 @@ import { Input } from '../Input/input';
 import { Button } from '../Button/button';
 import { selectIsReply, selectReplyTo } from '../../Redux/messages/selectors';
 import { fromReply, handleSendMessage } from '../../Redux/messages/actions';
+import { selectPageId } from '../../Redux/reducers/bookReducer/bookSelector';
 
 
-export const Form = ({ pageId, setReplyFormIsShown, formIsShown, setFormIsShown }) => {
+export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
 
     const dispatch = useDispatch();
     const inputRef = useRef();
@@ -16,6 +17,8 @@ export const Form = ({ pageId, setReplyFormIsShown, formIsShown, setFormIsShown 
     let [value, setValue] = useState('');
     const isReply = useSelector(selectIsReply);
     const replyToMsg = useSelector(selectReplyTo);
+
+    const pageId = useSelector(selectPageId);
 
     const handleChange = (e) => {
         setValue(e.target.value);

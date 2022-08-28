@@ -1,4 +1,4 @@
-import { REPLY, SHOW_MESSAGES } from "./actions";
+import { REPLY, SHOW_MESSAGES, SHOW_REPLIES } from "./actions";
 
 
 const initialState = {
@@ -19,7 +19,7 @@ export const messagesReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 isReply: payload.isReply,
                 replyTo: payload.replyTo
-            };
+            }
         default:
             return state;
     };

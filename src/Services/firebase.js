@@ -33,13 +33,15 @@ export const logOut = async () => await signOut(auth);
 
 export const database = getDatabase(app);
 
-// export const userRef = ref(database, 'user');
-// export const chatsRef = ref(database, 'chatList');
-// export const getChatRefById = (id) => ref(database, `chatList/${id}`);
+export const userRef = ref(database, 'users');
+export const getUserRef = (userId) => ref(database, `users/${userId}`);
 
 export const messagesRef = ref(database, 'messages');
 export const getMsgsRefByChatId = (chatId) => ref(database, `messages/${chatId}`);
 export const getMessageRefById = (chatId, msgId) =>
     ref(database, `messages/${chatId}/${msgId}`);
+export const getRepliesRefByChatId = (chatId) => ref(database, `replies/${chatId}`);
+// export const getReplyRefByMsgId = (chatId, msgId, replyId) =>
+//     ref(database, `replies/${chatId}/${msgId}/${replyId}`);
 export const getReplyRefByMsgId = (chatId, msgId, replyId) =>
     ref(database, `messages/${chatId}/${msgId}/replies/${replyId}`);

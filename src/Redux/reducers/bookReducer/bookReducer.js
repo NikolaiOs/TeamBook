@@ -5,7 +5,7 @@ const initialState = {
     bookList: {},
     loader: false,
     error: null,
-    bookPageId: 10//заменить значением из url
+    bookPageId: 10
 };
 
 

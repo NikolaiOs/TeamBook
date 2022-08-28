@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import { Container, CssBaseline } from "@mui/material";
 import { error, getBookSelector, loader, selectPageId } from "../Redux/reducers/bookReducer/bookSelector";
 import { loadBooks } from "../Redux/reducers/bookReducer/bookReducer";
-import { ChatItem } from "../Components/ChatItem/chat";
+import { Messages } from "../Components/Messages/messages";
 
 
 const Reader = () => {
@@ -109,7 +109,7 @@ const Reader = () => {
                 <Button onClick={scroll}><img src='Vector2.svg' alt='' /></Button>
             </Container>
 
-            <ChatItem></ChatItem>
+            <Messages></Messages>
             <Box component='footer' sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}></Box>
         </>
     )

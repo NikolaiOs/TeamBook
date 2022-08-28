@@ -1,8 +1,9 @@
 .input {
   margin: 0 auto;
-  padding: 10%;
+  padding: 2%;
   border-radius: 15px;
   font-size: 95%;
+  height: fit-content;
 }
 
 .input__form {

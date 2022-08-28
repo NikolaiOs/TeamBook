@@ -10,7 +10,7 @@
   }
 
   .message__author:hover, .message__reply:hover, .message__complain:hover, .message__details:hover  {
- color: blue
+ color: #F28D5F;
   }
 
   .message__text {
@@ -46,6 +46,9 @@ height: 3vw;
 }
 
 
+.reply {
+  margin-left: 15%;
+}
 
 
 @media (max-width: 1250px)

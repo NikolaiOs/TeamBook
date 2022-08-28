@@ -3,6 +3,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { createLogger } from "redux-logger/src";
 import { bookReducer } from "./reducers/bookReducer/bookReducer";
 import { messagesReducer } from './messages/reducer';
+import { userReducer } from './user/reducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -14,7 +15,8 @@ const logger = createLogger({
 
 const rootReducer = combineReducers({
     books: bookReducer,
-    messages: messagesReducer
+    messages: messagesReducer,
+    user: userReducer
 })
 
 
