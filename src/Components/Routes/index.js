@@ -52,7 +52,6 @@ export const Router = () => {
                     <Route path="signUp" element={<SignUp isSignUp={isSignUp} />} />
                     <Route path="signIn" element={<SignIn isSignUp={isSignUp} />} />
                     <Route path="user/:userId" element={<User />} >
-                        {/* <Route path=":userId" element={<User />} /> */}
                     </Route>
                     <Route path="*" element={<NotFoundPage />} />
                     <Route path="reader" element={<Reader />} />

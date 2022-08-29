@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../Styles/reader.css"
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { Container, CssBaseline } from "@mui/material";
-import { error, getBookSelector, loader, selectPageId } from "../Redux/reducers/bookReducer/bookSelector";
+import { error, getBookSelector, loader } from "../Redux/reducers/bookReducer/bookSelector";
 import { loadBooks } from "../Redux/reducers/bookReducer/bookReducer";
 import { Messages } from "../Components/Messages/messages";
 

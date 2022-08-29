@@ -1,5 +1,5 @@
 import { onValue, set } from "firebase/database";
-import { auth, getMessageRefById, getMsgsRefByChatId, getRepliesRefByChatId, getReplyRefByMsgId } from "../../Services/firebase";
+import { auth, getMessageRefById, getMsgsRefByChatId, getReplyRefByMsgId } from "../../Services/firebase";
 
 export const SHOW_MESSAGES = "MESSAGES::SHOW_LIST";
 export const REPLY = "MESSAGES::REPLY";
@@ -28,7 +28,6 @@ export const messagesList = (bookPageId) => async (dispatch) => {
 };
 
 export const handleSendMessage = (value, bookPageId, msgId) => async (dispatch) => {
-    console.log("value: ", value)
     const date = new Date();
     const now = String(date.getDate()).padStart(2, '0') + '.' + String(date.getMonth() + 1).padStart(2, '0') + '.' + date.getFullYear();
     const newMsg = {

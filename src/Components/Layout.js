@@ -2,7 +2,7 @@ import React from "react";
 import "../Styles/layout.css"
 import { Link, Outlet } from "react-router-dom";
 import { selectCurrentUser } from "../Redux/user/selectors";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button } from "./Button/button";
 import { logOut } from "../Services/firebase";
 

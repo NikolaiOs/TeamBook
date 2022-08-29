@@ -1,5 +1,5 @@
 import { onValue } from "firebase/database";
-import { getUserRef, userRef } from "../../Services/firebase";
+import { userRef } from "../../Services/firebase";
 
 export const CHANGE_NAME = "USER::CHANGE_NAME";
 export const SIGN_IN = "USER::SIGN_IN";
@@ -29,8 +29,7 @@ export const signOut = () => ({
 
 
 export const usersList = () => async (dispatch) => {
-    const unsubscribe = onValue(userRef, (snapshot) => {
-        // setUserName(chatsSnap.val()?.name);
+    onValue(userRef, (snapshot) => {
         dispatch(showMessages(Object.values(snapshot.val() || [])));
     })
 };
