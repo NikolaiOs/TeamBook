@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fromReply } from "../../Redux/messages/actions";
-import { selectUsersList } from "../../Redux/user/selectors";
 import { MessageShow } from "../MessageToShow/messageToShow";
 
 export function Message({ message, handleChangeMessage, handleDeleteMessage }) {

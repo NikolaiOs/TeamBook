@@ -3,14 +3,11 @@ import { Message } from '../Message/message';
 import { useDispatch, useSelector } from "react-redux";
 // import { isChangingMessage } from "../../store/messages/actions"
 import './messages.css'
-import { selectMesagesList, selectRepliesList, selectReplyTo } from '../../Redux/messages/selectors';
+import { selectMesagesList, selectReplyTo } from '../../Redux/messages/selectors';
 import { messagesList } from '../../Redux/messages/actions';
 import { selectPageId } from '../../Redux/reducers/bookReducer/bookSelector';
 import { Button } from '../Button/button';
 import { Form } from '../Form/form';
-import { onValue } from 'firebase/database';
-import { userRef } from '../../Services/firebase';
-import { selectUsersList } from '../../Redux/user/selectors';
 
 
 export function Messages() {

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import './messageToShow.css'
 import { fromReply } from "../../Redux/messages/actions";
 import { selectMesagesList } from "../../Redux/messages/selectors";
+import { SLICE_CHART } from "../../constants";
 
 export function MessageShow({ messageToShow, children, className }) {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export function MessageShow({ messageToShow, children, className }) {
     const messages = useSelector(selectMesagesList);
 
     const [dotsAreShown, setDotsAreShown] = useState(true);
-    const [sliceChart, setsliceChart] = useState(300);
+    const [sliceChart, setsliceChart] = useState(SLICE_CHART);
     const [replyFormIsShown, setReplyFormIsShown] = useState(false);
 
 
@@ -26,8 +27,6 @@ export function MessageShow({ messageToShow, children, className }) {
     function replyBtnHandler(id) {
 
         const putReplyToTopLevelMsg = messages.findIndex(message => Number(Object.keys(message.replies)) === id);
-        // console.log("messages[putReplyToTopLevelMsg].id: ", messages[putReplyToTopLevelMsg].id);
-        // console.log("putReplyToTopLevelMsg: ", putReplyToTopLevelMsg);
         setReplyFormIsShown(true);
         dispatch(fromReply(true, messages[putReplyToTopLevelMsg].id || id));
     }

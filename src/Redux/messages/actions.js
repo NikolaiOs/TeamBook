@@ -1,5 +1,5 @@
 import { onValue, set } from "firebase/database";
-import { auth, getMessageRefById, getMsgsRefByChatId, getRepliesRefByChatId, getReplyRefByMsgId } from "../../Services/firebase";
+import { auth, getMessageRefById, getMsgsRefByChatId, getReplyRefByMsgId } from "../../Services/firebase";
 
 export const SHOW_MESSAGES = "MESSAGES::SHOW_LIST";
 export const REPLY = "MESSAGES::REPLY";
@@ -22,7 +22,7 @@ export const fromReply = (boolean, msgId) => ({
 })
 
 export const messagesList = (bookPageId) => async (dispatch) => {
-    const unsubscribe = onValue(getMsgsRefByChatId(bookPageId), (snapshot) => {
+    onValue(getMsgsRefByChatId(bookPageId), (snapshot) => {
         dispatch(showMessages(Object.values(snapshot.val() || [])));
     });
 };

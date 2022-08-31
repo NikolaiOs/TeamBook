@@ -1,18 +1,21 @@
 import { auth } from "../../Services/firebase";
-import { CHANGE_NAME, SHOW_USERS, SIGN_IN, SIGN_OUT } from "./actions";
+import { CHANGE_NAME, REQUEST_USER_FAILURE, REQUEST_USER_LOADING, REQUEST_USER_SUCCESS, SHOW_USERS, SIGN_IN, SIGN_OUT } from "./actions";
 
 
 const initialState = {
     users: [],
-    name: "",
     authed: false,
-    currentUser: {}
+    currentUser: {},
+    request: {
+        loading: false,
+        error: "",
+    }
 }
 
 export const userReducer = (state = initialState, { type, payload }) => {
+    let currentUser = state.users.find(user => user.id === auth.currentUser?.uid);
     switch (type) {
         case SHOW_USERS:
-            const currentUser = payload.find(user => user.id === auth.currentUser.uid);
             return {
                 ...state,
                 users: payload,
@@ -21,17 +24,48 @@ export const userReducer = (state = initialState, { type, payload }) => {
         case CHANGE_NAME:
             return {
                 ...state,
-                name: payload,
+                currentUser: {
+                    ...state.currentUser,
+                    name: payload
+                },
             };
         case SIGN_IN:
             return {
                 ...state,
                 authed: true,
+                currentUser: currentUser,
             };
         case SIGN_OUT:
             return {
                 ...state,
                 authed: false,
+                currentUser: {}
+            };
+        case REQUEST_USER_LOADING:
+            return {
+                ...state,
+                request: {
+                    ...state.request,
+                    loading: payload,
+                }
+            };
+        case REQUEST_USER_FAILURE:
+            return {
+                ...state,
+                request: {
+                    ...state.request,
+                    error: payload,
+                    loading: false,
+                }
+            };
+        case REQUEST_USER_SUCCESS:
+            return {
+                ...state,
+                request: {
+                    ...state.request,
+                    error: '',
+                    loading: false,
+                }
             };
         default:
             return state;

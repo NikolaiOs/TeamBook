@@ -1,4 +1,4 @@
-import { REPLY, SHOW_MESSAGES, SHOW_REPLIES } from "./actions";
+import { REPLY, SHOW_MESSAGES } from "./actions";
 
 
 const initialState = {
