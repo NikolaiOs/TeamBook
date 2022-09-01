@@ -1,16 +1,22 @@
-import React from "react";
 import "../Styles/layout.css"
 import { Link, Outlet } from "react-router-dom";
-import { selectCurrentUser } from "../Redux/user/selectors";
+import { selectAuth, selectCurrentUser } from "../Redux/user/selectors";
+
 import { useSelector } from "react-redux";
 import { Button } from "./Button/button";
 import { logOut } from "../Services/firebase";
+import { SIGN_IN_LINK } from "../constants";
 
 
 
+const Layout = () => {
 
-const Layout = ({ isSignUp }) => {
     const currentUser = useSelector(selectCurrentUser);
+    const isSignUp = useSelector(selectAuth);
+
+
+
+
     const handleLogOut = async () => {
         try {
             await logOut();
@@ -61,10 +67,10 @@ const Layout = ({ isSignUp }) => {
                         <div className="header__right-link">
                             {isSignUp ?
                                 <div className="flex">
-                                    <Link className="right-link__item" to={`/user/${currentUser.id}`}>{currentUser.name}</Link>
+                                    <Link className="right-link__item" to={`/user/${currentUser?.id}`}>{currentUser?.name}</Link>
                                     <Button onClick={handleLogOut} type={'button'} value={"Выход"}></Button>
                                 </div>
-                                : <Link className="right-link__item" to="signIn" >Войти</Link>
+                                : <Link className="right-link__item" to={SIGN_IN_LINK} >Войти</Link>
                             }
                         </div>
                     </div>

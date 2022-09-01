@@ -8,6 +8,7 @@ import { Container, CssBaseline } from "@mui/material";
 import { error, getBookSelector, loader } from "../Redux/reducers/bookReducer/bookSelector";
 import { loadBooks } from "../Redux/reducers/bookReducer/bookReducer";
 import { Messages } from "../Components/Messages/messages";
+import { CircularProgress } from "@mui/material";
 
 
 const Reader = () => {
@@ -34,7 +35,7 @@ const Reader = () => {
 
     if (loading) {
         return (
-            <div><h2>Загрузка</h2></div>
+            <CircularProgress />
         )
     }
 

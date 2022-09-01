@@ -35,7 +35,7 @@
     align-self: flex-end;
   }
 
-  .button__center {
-    margin: 0 auto;
-    display: block;
+
+  .button__grid-row-4 {
+    grid-row-start: 4;
   }

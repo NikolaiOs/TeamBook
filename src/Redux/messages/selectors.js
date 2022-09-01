@@ -4,4 +4,6 @@ export const selectRepliesList = state => state.messages.replies;
 
 export const selectIsReply = state => state.messages.isReply;
 export const selectReplyTo = state => state.messages.replyTo;
+export const selectMsgLoading = state => state.messages.request.loading;
+export const selectMsgError = state => state.messages.request.error;
 

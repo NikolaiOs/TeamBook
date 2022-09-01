@@ -49,7 +49,6 @@ export const loadBooks = () => {
                 throw new Error(`Request failed with status ${response.status}`);
             }
             const data = await response.json();
-            console.log(data)
             dispatch(getBooks(data))
         } catch (e) {
             dispatch(getError(e))
