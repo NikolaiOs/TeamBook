@@ -78,24 +78,24 @@ export const SignIn = () => {
                     <>
                         <h2>{location.pathname === SIGN_UP_LINK ? SIGN_UP : SIGN_IN}</h2>
                         <form className="signForm" onSubmit={handleSubmit}>
+                            <div className="signForm__content">
+                                <label htmlFor="email" className="left-column">Email</label>
+                                <Input id="email" type="email" value={email} className="right-column" onChange={handleChangeEmail} />
 
-                            <label htmlFor="email" className="left-column">Email</label>
-                            <Input id="email" type="email" value={email} className="right-column" onChange={handleChangeEmail} />
+                                <label htmlFor="password" className="left-column">Password</label>
+                                <Input id="password" type="password" value={password} className="right-column" currentPassword={password} onChange={handleChangePassword} />
 
-                            <label htmlFor="password" className="left-column">Password</label>
-                            <Input id="password" type="password" value={password} className="right-column" currentPassword={password} onChange={handleChangePassword} />
-
-                            {location.pathname === SIGN_UP_LINK && <>
-                                <label htmlFor="user" className="left-column">User</label>
-                                <Input id="user" type="text" value={user} className="right-column" onChange={handleChangeUser} />
-                            </>}
-
-                            <Button className='button__mt3vm' type="submit" value="Подтвердить" />
-                            {error && <h4>{error}</h4>}
+                                {location.pathname === SIGN_UP_LINK && <>
+                                    <label htmlFor="user" className="left-column">User</label>
+                                    <Input id="user" type="text" value={user} className="right-column" onChange={handleChangeUser} />
+                                </>}
+                            </div>
+                            <Button className='button__mt3vm button__grid-row-4' type="submit" value="Подтвердить" />
                         </form>
                         <Link to={location.pathname === SIGN_UP_LINK ? SIGN_IN_LINK : SIGN_UP_LINK} className="link">
                             {location.pathname === SIGN_UP_LINK ? SIGN_IN : SIGN_UP}
                         </Link>
+                        {error && <h4>{error}</h4>}
                     </>
                 }
             </>

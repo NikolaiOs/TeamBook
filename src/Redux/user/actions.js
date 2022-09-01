@@ -36,9 +36,8 @@ export const userLoading = (isLoading) => ({
     payload: isLoading
 });
 
-export const userSuccess = (animeList) => ({
+export const userSuccess = () => ({
     type: REQUEST_USER_SUCCESS,
-    animeList
 });
 
 export const userFailure = (error) => ({

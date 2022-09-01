@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "../../Pages/Home";
 import { Books } from "../../Pages/Books";
@@ -13,6 +13,7 @@ import { isAuthed, usersList } from "../../Redux/user/actions";
 import { SignIn } from "../../Pages/SignIn";
 import { User } from "../../Pages/User";
 import { SIGN_IN_LINK, SIGN_UP_LINK } from "../../constants";
+import { PopUp } from "../PopUp/popUp";
 
 export const Router = () => {
 
@@ -21,7 +22,6 @@ export const Router = () => {
     //нужно загружать на верхнем уровне, чтобы отображались пользователи
     useEffect(() => {
         const unsubscribeUsers = dispatch(usersList());
-        // const unsubscribeAuthed = dispatch(isAuthed());
 
         return () => unsubscribeUsers;
     }, []);
@@ -32,6 +32,8 @@ export const Router = () => {
 
         return () => unsubscribe;
     }, [])
+
+    const [modalActive, setModalActive] = useState(true);
 
     return (
         <>
@@ -44,10 +46,13 @@ export const Router = () => {
                     <Route path="buySubscription" element={<BuySubscription />} />
                     <Route path={SIGN_UP_LINK} element={<SignIn />} />
                     <Route path={SIGN_IN_LINK} element={<SignIn />} />
-                    <Route path="user/:userId" element={<User />} >
+                    <Route path="user/:userId" element={<User />} />
+                    <Route path="reader" element={<Reader />} >
                     </Route>
+                    <Route path="reader/noauth" element={<PopUp active={modalActive} setActive={setModalActive}>
+                        <>  <h4>Оставлять комментарии могут только зарегистрированные пользователи</h4></>
+                    </PopUp>} />
                     <Route path="*" element={<NotFoundPage />} />
-                    <Route path="reader" element={<Reader />} />
                 </Route>
             </Routes>
         </>

@@ -19,7 +19,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 users: payload,
-                currentUser: currentUser,
+                currentUser: currentUser || {},
             };
         case CHANGE_NAME:
             return {
@@ -33,7 +33,7 @@ export const userReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 authed: true,
-                currentUser: currentUser,
+                currentUser: currentUser || {},
             };
         case SIGN_OUT:
             return {

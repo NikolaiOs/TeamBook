@@ -26,13 +26,13 @@
   }
   
   .modal__content {
-    padding: 20px;
+    padding: 25px;
     background-color: white;
     -webkit-transform: scale(0.5);
             transform: scale(0.5);
     -webkit-transition: 0.4s all;
     transition: 0.4s all;
-    width: 40vw;
+    max-width: 40vw;
     border-radius: 10px;
   }
   

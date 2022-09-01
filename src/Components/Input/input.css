@@ -1,13 +1,14 @@
 .input {
-  margin: 0 auto;
-  padding: 2%;
+  /* margin: 0 auto; */
+  padding: 3%;
   border-radius: 15px;
   font-size: 95%;
   height: fit-content;
+  width: 93%;
 }
 
 .input__form {
   max-width: 1120px;
-  width: 100%;
   padding: 2% 3%;
+  width: 100%;
 }

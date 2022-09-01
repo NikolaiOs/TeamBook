@@ -6,6 +6,9 @@ import { Button } from '../Button/button';
 import { selectIsReply, selectReplyTo } from '../../Redux/messages/selectors';
 import { fromReply, handleSendMessage } from '../../Redux/messages/actions';
 import { selectPageId } from '../../Redux/reducers/bookReducer/bookSelector';
+import { selectAuth } from '../../Redux/user/selectors';
+import { Navigate } from "react-router-dom";
+import { PopUp } from '../PopUp/popUp';
 
 
 export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
@@ -13,11 +16,13 @@ export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
     const dispatch = useDispatch();
     const inputRef = useRef();
 
-
     let [value, setValue] = useState('');
+    const [modalActive, setModalActive] = useState(true);
+
+
     const isReply = useSelector(selectIsReply);
     const replyToMsg = useSelector(selectReplyTo);
-
+    const isAuthed = useSelector(selectAuth);
     const pageId = useSelector(selectPageId);
 
     const handleChange = (e) => {
@@ -29,20 +34,35 @@ export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (value) {
-            if (isReply === true) {
-                dispatch(handleSendMessage(value, pageId, replyToMsg));
-                dispatch(fromReply(false, null));
-                setReplyFormIsShown(false);
-            } else {
-                dispatch(handleSendMessage(value, pageId));
-                setFormIsShown(!formIsShown)
-            }
+        console.log("isAuthed: ", isAuthed)
+        if (!isAuthed) {
+            nav();
         }
-        inputRef.current?.focus();
-        setValue('');
+        if (isAuthed) {
+            if (value) {
+                if (isReply === true) {
+                    dispatch(handleSendMessage(value, pageId, replyToMsg));
+                    dispatch(fromReply(false, null));
+                    setReplyFormIsShown(false);
+                } else {
+                    dispatch(handleSendMessage(value, pageId));
+                    setFormIsShown(!formIsShown)
+                }
+            }
+            inputRef.current?.focus();
+            setValue('');
+        }
     }
 
+
+    const nav = () => {
+        return (
+            // <Navigate replace to="/noauth" />
+            <PopUp active={modalActive} setActive={setModalActive}>
+                <>  <h4>Оставлять комментарии могут только зарегистрированные пользователи</h4></>
+            </PopUp>
+        )
+    }
 
     return (
         <>
