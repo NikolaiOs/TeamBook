@@ -2,7 +2,7 @@ import {ERROR_BOOKS, GET_BOOKS, LOADING_BOOKS} from "../../actionTypes";
 import {getError, getLoading, getBooks} from "../../action";
 
 const initialState = {
-    bookList: {},
+    bookList: [],
     loader: false,
     error: null
 };
@@ -33,18 +33,15 @@ export const bookReducer = (state = initialState, action) => {
 }
 
 export const loadBooks = () => {
-
-
     return async dispatch => {
         dispatch(getLoading())
         try {
-            const response = await fetch('https://catfact.ninja/fact?max_length=5000');
+            const response = await fetch('/Book.txt');
             if (!response.ok) {
                 throw new Error(`Request failed with status ${response.status}`);
             }
-            const data = await response.json();
-            console.log(data)
-            dispatch(getBooks(data))
+            const result = await response.text();
+            dispatch(getBooks(result))
         } catch (e) {
             dispatch(getError(e))
         }

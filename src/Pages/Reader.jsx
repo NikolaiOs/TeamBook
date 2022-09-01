@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import "../Styles/reader.css"
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -7,23 +7,32 @@ import Box from "@mui/material/Box";
 import {Container, CssBaseline} from "@mui/material";
 import {error, getBookSelector, loader} from "../Redux/reducers/bookReducer/bookSelector";
 import {loadBooks} from "../Redux/reducers/bookReducer/bookReducer";
+import {PaginationControl} from "../Components/PaginationControl";
 
 const Reader = () => {
-    const getBook = useSelector(getBookSelector)
     const dispatch = useDispatch();
     const loading = useSelector(loader);
     const err = useSelector(error);
-    const main = document.getElementById('main');
 
-    useEffect(() => {
-        dispatch(loadBooks())}, []
+    const books  = useSelector(getBookSelector);
+
+
+
+
+
+    useEffect( () => {
+        dispatch(loadBooks());
+        }, []
     );
 
+
     const scroll = () => {
+        const main = document.getElementById('main');
         main.scrollLeft += 600;
     }
 
     const scrollBack = () => {
+        const main = document.getElementById('main');
         main.scrollLeft += -600;
     }
 
@@ -41,7 +50,6 @@ const Reader = () => {
             </div>
         )
     }
-
 
     return (
         <>
@@ -88,22 +96,27 @@ const Reader = () => {
                     </div>
                 </div>
             </section>
-
-                <Container sx={{ display: 'flex', justifyContent: 'space-between'}}>
-                    <Button onClick={scrollBack}><img src='Vector.svg' alt=''/></Button>
-                        <Box id='main' whiteSpace='pre-line'> {/*sx={{columnCount: 2,*/}
-                        {/*columnGap: '64px',*/}
-                        {/*overflow: 'hidden',*/}
-                        {/*height: '772px',*/}
-                        {/*columnWidth: '544px',*/}
-                        {/*textAlign: 'justify'}}>*/}
+            <div style={{display: "flex"}}>
+            <Button onClick={scrollBack}><img src='Vector.svg' alt=''/></Button>
+                <Container>
+                    <div className='chapter' style={{ display: 'flex',
+                        justifyContent: 'space-around' }}>
+                        <h4>Льюис Кэролл</h4>
+                        <h4>Алиса в стране чудес</h4>
+                    </div>
+                        <Box id='main' whiteSpace='pre-line' sx={{columnCount: 2,
+                        columnGap: '64px',
+                        overflow: 'hidden',
+                        height: '772px',
+                        columnWidth: '544px',
+                        textAlign: 'justify'}}>
                         <CssBaseline/>
-                        <h2>{getBook.length}</h2>
-                            <p>{getBook.fact}</p>
+                            {books}
                         </Box>
-                    <Button onClick={scroll}><img src='Vector2.svg' alt=''/></Button>
+                    <PaginationControl/>
                 </Container>
-
+            <Button onClick={scroll}><img src='Vector2.svg' alt=''/></Button>
+            </div>
             <Box component='footer' sx={{flexGrow: 1, display: 'flex', justifyContent: 'center'}}>
                 <Button style={{borderRadius: 30, backgroundColor: '#A7A7A7', color: 'black'}}>написать комментарий</Button>
             </Box>
