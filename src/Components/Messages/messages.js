@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { Message } from '../Message/message';
 import { useDispatch, useSelector } from "react-redux";
-// import { isChangingMessage } from "../../store/messages/actions"
 import './messages.css'
+
 import { selectMesagesList, selectReplyTo, selectMsgLoading, selectMsgError } from '../../Redux/messages/selectors';
+
 import { messagesList } from '../../Redux/messages/actions';
 import { selectPageId } from '../../Redux/reducers/bookReducer/bookSelector';
 import { Button } from '../Button/button';
 import { Form } from '../Form/form';
+
 import { CircularProgress } from "@mui/material";
+
 
 
 export const Messages = () => {
@@ -17,12 +20,10 @@ export const Messages = () => {
     const messages = useSelector(selectMesagesList);
 
     const replyToMsg = useSelector(selectReplyTo);
+
     const pageId = useSelector(selectPageId);
     const loading = useSelector(selectMsgLoading);
     const error = useSelector(selectMsgError);
-
-    // const { chatId } = useParams();
-
 
     const [formIsShown, setFormIsShown] = useState(false);
 
@@ -33,7 +34,6 @@ export const Messages = () => {
         const unsubscribe = dispatch(messagesList(pageId));
         return () => unsubscribe;
     }, [pageId]);
-
 
     return (
         <>

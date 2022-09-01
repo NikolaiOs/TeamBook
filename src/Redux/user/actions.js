@@ -1,3 +1,4 @@
+
 import { onValue, set } from "firebase/database";
 import { auth, getUserRef, logIn, register, userRef } from "../../Services/firebase";
 
@@ -51,6 +52,7 @@ export const userFailure = (error) => ({
 export const usersList = () => async (dispatch) => {
     onValue(userRef, (snapshot) => {
         dispatch(showUsers(Object.values(snapshot.val() || [])));
+
     })
 };
 
