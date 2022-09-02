@@ -10,12 +10,12 @@ import { selectAuth, selectUserError, selectUserLoading } from "../Redux/user/se
 import { SIGN_IN, SIGN_IN_LINK, SIGN_UP, SIGN_UP_LINK } from "../constants";
 import { logInByClick, registerByClick } from "../Redux/user/actions";
 
-export const SignIn = () => {
+export const SignIn = ({ modalActive, setModalActive }) => {
     const dispatch = useDispatch();
     let location = useLocation();
-    const isSignUp = useSelector(selectAuth);
+    const [isSignUp, setIsSignUp] = useState(false);
 
-    const [modalActive, setModalActive] = useState(true);
+    // const [modalActive, setModalActive] = useState(true);
 
     const loading = useSelector(selectUserLoading);
     const error = useSelector(selectUserError);
@@ -47,26 +47,27 @@ export const SignIn = () => {
     }
 
 
-
-
     // нажатие кнопки - подтверждение намерения залогиниться или зарегаться
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (location.pathname === SIGN_UP_LINK) {
+        // if (location.pathname === SIGN_UP_LINK) {
+        if (isSignUp) {
             handleSignUp();
         } else {
             handleSignIn();
         }
-
+        setModalActive(false);
+        setIsSignUp(false);
         setEmail("");
         setPassword("");
         setUser("");
     };
 
-    if (isSignUp) {
-        return (<Navigate replace to="/" />)
-    }
+    //нет ссылок - не нужно перекидывать на другую
+    // if (isSignUp) {
+    //     return (<Navigate replace to="/" />)
+    // }
 
 
 
@@ -76,7 +77,11 @@ export const SignIn = () => {
             <>
                 {loading ? <CircularProgress /> :
                     <>
-                        <h2>{location.pathname === SIGN_UP_LINK ? SIGN_UP : SIGN_IN}</h2>
+                        {/* вместо ссылки просто компонент условно рендерится, тогда наполнение на фоне не пропадает */}
+                        {/* по этой причине сравнение идет с флагом. где  true=SIGN_UP false=SIGN_IN} */}
+
+                        {/* <h2>{location.pathname === SIGN_UP_LINK ? SIGN_UP : SIGN_IN}</h2> */}
+                        <h2>{isSignUp ? SIGN_UP : SIGN_IN}</h2>
                         <form className="signForm" onSubmit={handleSubmit}>
                             <div className="signForm__content">
                                 <label htmlFor="email" className="left-column">Email</label>
@@ -85,16 +90,18 @@ export const SignIn = () => {
                                 <label htmlFor="password" className="left-column">Password</label>
                                 <Input id="password" type="password" value={password} className="right-column" currentPassword={password} onChange={handleChangePassword} />
 
-                                {location.pathname === SIGN_UP_LINK && <>
+                                {/* {location.pathname === SIGN_UP_LINK && <> */}
+                                {isSignUp && <>
                                     <label htmlFor="user" className="left-column">User</label>
                                     <Input id="user" type="text" value={user} className="right-column" onChange={handleChangeUser} />
                                 </>}
                             </div>
                             <Button className='button__mt3vm button__grid-row-4' type="submit" value="Подтвердить" />
                         </form>
-                        <Link to={location.pathname === SIGN_UP_LINK ? SIGN_IN_LINK : SIGN_UP_LINK} className="link">
+                        {/* <Link to={location.pathname === SIGN_UP_LINK ? SIGN_IN_LINK : SIGN_UP_LINK} className="link">
                             {location.pathname === SIGN_UP_LINK ? SIGN_IN : SIGN_UP}
-                        </Link>
+                        </Link> */}
+                        <p className="link" onClick={() => setIsSignUp(!isSignUp)}> {isSignUp ? SIGN_IN : SIGN_UP}</p>
                         {error && <h4>{error}</h4>}
                     </>
                 }

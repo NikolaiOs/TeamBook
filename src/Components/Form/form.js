@@ -7,7 +7,7 @@ import { selectIsReply, selectReplyTo } from '../../Redux/messages/selectors';
 import { fromReply, handleSendMessage } from '../../Redux/messages/actions';
 import { selectPageId } from '../../Redux/reducers/bookReducer/bookSelector';
 import { selectAuth } from '../../Redux/user/selectors';
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { PopUp } from '../PopUp/popUp';
 
 
@@ -15,9 +15,10 @@ export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
 
     const dispatch = useDispatch();
     const inputRef = useRef();
+    let navigate = useNavigate();
 
     let [value, setValue] = useState('');
-    const [modalActive, setModalActive] = useState(true);
+    const [modalActive, setModalActive] = useState(false);
 
 
     const isReply = useSelector(selectIsReply);
@@ -34,10 +35,6 @@ export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("isAuthed: ", isAuthed)
-        if (!isAuthed) {
-            nav();
-        }
         if (isAuthed) {
             if (value) {
                 if (isReply === true) {
@@ -51,17 +48,11 @@ export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
             }
             inputRef.current?.focus();
             setValue('');
+        } else {
+            // navigate("/noauth", { replace: true }); 
+            setModalActive(true);
         }
-    }
 
-
-    const nav = () => {
-        return (
-            // <Navigate replace to="/noauth" />
-            <PopUp active={modalActive} setActive={setModalActive}>
-                <>  <h4>Оставлять комментарии могут только зарегистрированные пользователи</h4></>
-            </PopUp>
-        )
     }
 
     return (
@@ -71,6 +62,11 @@ export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
                     inputRef={inputRef}
                     placeholder='Текст сообщения' onChange={handleChange} />
                 <Button value={'Отправить'} type='submit' className="button__mt3vm button__right" />
+                {console.log('!isAuthed: ', !isAuthed)}
+                {console.log('modalActive: ', modalActive)}
+                {!isAuthed && modalActive && <PopUp active={modalActive} setActive={setModalActive}>
+                    <h4>Оставлять комментарии могут только зарегистрированные пользователи</h4>
+                </PopUp>}
             </form>
         </>
     )

@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { Button } from "./Button/button";
 import { logOut } from "../Services/firebase";
 import { SIGN_IN_LINK } from "../constants";
+import { SignIn } from "../Pages/SignIn";
+import { useState } from "react";
 
 
 
@@ -13,7 +15,7 @@ const Layout = () => {
 
     const currentUser = useSelector(selectCurrentUser);
     const isSignUp = useSelector(selectAuth);
-
+    const [modalActive, setModalActive] = useState(false);
 
 
 
@@ -70,10 +72,18 @@ const Layout = () => {
                                     <Link className="right-link__item" to={`/user/${currentUser?.id}`}>{currentUser?.name}</Link>
                                     <Button onClick={handleLogOut} type={'button'} value={"Выход"}></Button>
                                 </div>
-                                : <Link className="right-link__item" to={SIGN_IN_LINK} >Войти</Link>
+                                :
+                                <>
+                                    {/* вместо ссылки просто компонент условно рендерится, тогда наполнение на фоне не пропадает */}
+                                    {/* <Link className="right-link__item" to={SIGN_IN_LINK} >Войти</Link> */}
+                                    <p className="right-link__item" onClick={() => setModalActive(true)} >Войти</p>
+                                </>
                             }
                         </div>
                     </div>
+                    {modalActive &&
+                        <SignIn modalActive={modalActive} setModalActive={setModalActive}></SignIn>
+                    }
                 </div>
             </header>
             <Outlet />
