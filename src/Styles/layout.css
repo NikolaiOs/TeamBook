@@ -98,6 +98,7 @@
     line-height: 20px;
     text-decoration: none;
     color: #000000;
+    cursor: pointer;
 }
 
 .right-link__item_left {

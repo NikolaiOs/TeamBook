@@ -1,14 +1,12 @@
 import "../Styles/layout.css"
 import { Link, Outlet } from "react-router-dom";
-import { selectAuth, selectCurrentUser } from "../Redux/user/selectors";
-
+import { selectAuth, selectCurrentUser, selectUserError } from "../Redux/user/selectors";
 import { useSelector } from "react-redux";
 import { Button } from "./Button/button";
 import { logOut } from "../Services/firebase";
 import { SIGN_IN_LINK } from "../constants";
 import { SignIn } from "../Pages/SignIn";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 
 
 const Layout = () => {
@@ -17,6 +15,15 @@ const Layout = () => {
     const isSignUp = useSelector(selectAuth);
     const [modalActive, setModalActive] = useState(false);
 
+    const error = useSelector(selectUserError);
+
+    useEffect(() => {
+        if (error !== '') {
+            setModalActive(true);
+            console.log('error: ', error)
+
+        }
+    }, [error])
 
 
     const handleLogOut = async () => {

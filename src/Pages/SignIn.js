@@ -3,18 +3,18 @@ import { PopUp } from "../Components/PopUp/popUp";
 import { CircularProgress } from "@mui/material";
 import { Input } from "../Components/Input/input";
 import { Button } from "../Components/Button/button";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "../Styles/signIn.css"
-import { selectAuth, selectUserError, selectUserLoading } from "../Redux/user/selectors";
-import { SIGN_IN, SIGN_IN_LINK, SIGN_UP, SIGN_UP_LINK } from "../constants";
+import { selectUserError, selectUserLoading } from "../Redux/user/selectors";
+import { SIGN_IN, SIGN_UP, } from "../constants";
 import { logInByClick, registerByClick } from "../Redux/user/actions";
 
 export const SignIn = ({ modalActive, setModalActive }) => {
     const dispatch = useDispatch();
+
     let location = useLocation();
     const [isSignUp, setIsSignUp] = useState(false);
-
     // const [modalActive, setModalActive] = useState(true);
 
     const loading = useSelector(selectUserLoading);
@@ -57,18 +57,19 @@ export const SignIn = ({ modalActive, setModalActive }) => {
         } else {
             handleSignIn();
         }
+
         setModalActive(false);
         setIsSignUp(false);
         setEmail("");
         setPassword("");
         setUser("");
+
     };
 
     //нет ссылок - не нужно перекидывать на другую
     // if (isSignUp) {
     //     return (<Navigate replace to="/" />)
     // }
-
 
 
 
@@ -85,15 +86,15 @@ export const SignIn = ({ modalActive, setModalActive }) => {
                         <form className="signForm" onSubmit={handleSubmit}>
                             <div className="signForm__content">
                                 <label htmlFor="email" className="left-column">Email</label>
-                                <Input id="email" type="email" value={email} className="right-column" onChange={handleChangeEmail} />
+                                <Input id="email" type="email" value={email} className="right-column" required onChange={handleChangeEmail} />
 
                                 <label htmlFor="password" className="left-column">Password</label>
-                                <Input id="password" type="password" value={password} className="right-column" currentPassword={password} onChange={handleChangePassword} />
+                                <Input id="password" type="password" value={password} className="right-column" currentPassword={password} required onChange={handleChangePassword} />
 
                                 {/* {location.pathname === SIGN_UP_LINK && <> */}
                                 {isSignUp && <>
-                                    <label htmlFor="user" className="left-column">User</label>
-                                    <Input id="user" type="text" value={user} className="right-column" onChange={handleChangeUser} />
+                                    <label htmlFor="user" className="left-column">Username</label>
+                                    <Input id="user" type="text" value={user} className="right-column" required onChange={handleChangeUser} />
                                 </>}
                             </div>
                             <Button className='button__mt3vm button__grid-row-4' type="submit" value="Подтвердить" />

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import './form.css';
 import { Input } from '../Input/input';
 import { Button } from '../Button/button';
-import { selectIsReply, selectReplyTo } from '../../Redux/messages/selectors';
+import { selectIsReply, selectReplyTo, selectTopMsgToReply } from '../../Redux/messages/selectors';
 import { fromReply, handleSendMessage } from '../../Redux/messages/actions';
 import { selectPageId } from '../../Redux/reducers/bookReducer/bookSelector';
 import { selectAuth } from '../../Redux/user/selectors';
@@ -23,6 +23,7 @@ export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
 
     const isReply = useSelector(selectIsReply);
     const replyToMsg = useSelector(selectReplyTo);
+    const topComment = useSelector(selectTopMsgToReply);
     const isAuthed = useSelector(selectAuth);
     const pageId = useSelector(selectPageId);
 
@@ -38,7 +39,7 @@ export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
         if (isAuthed) {
             if (value) {
                 if (isReply === true) {
-                    dispatch(handleSendMessage(value, pageId, replyToMsg));
+                    dispatch(handleSendMessage(value, pageId, topComment, replyToMsg));
                     dispatch(fromReply(false, null));
                     setReplyFormIsShown(false);
                 } else {
@@ -62,8 +63,6 @@ export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
                     inputRef={inputRef}
                     placeholder='Текст сообщения' onChange={handleChange} />
                 <Button value={'Отправить'} type='submit' className="button__mt3vm button__right" />
-                {console.log('!isAuthed: ', !isAuthed)}
-                {console.log('modalActive: ', modalActive)}
                 {!isAuthed && modalActive && <PopUp active={modalActive} setActive={setModalActive}>
                     <h4>Оставлять комментарии могут только зарегистрированные пользователи</h4>
                 </PopUp>}

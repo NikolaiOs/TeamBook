@@ -20,20 +20,13 @@
   }
 
 .message__bottom {
-    margin-top: 1vh;
-    width: 50%;
+    width: 70%;
     align-items: center;
+    max-width: 400px;
+
 }
 
-.pointer {
-    cursor: pointer;
-}
-  
-.message__date {
-    flex-grow: 1;
-}
-
-.message__reply, .message__complain {
+.message__date, .message__reply, .message__complain {
   flex-grow: 1;
 }
 

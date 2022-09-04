@@ -8,12 +8,14 @@ import { BuySubscription } from "../../Pages/BuySubscription";
 import { NotFoundPage } from "../../Pages/NotFoundPage";
 import { Layout } from "../Layout";
 import { Reader } from "../../Pages/Reader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isAuthed, usersList } from "../../Redux/user/actions";
 import { SignIn } from "../../Pages/SignIn";
 import { User } from "../../Pages/User";
 import { NOAUTH_LINK, READER_LINK, SIGN_IN_LINK, SIGN_UP_LINK } from "../../constants";
 import { NoAuth } from "../../Pages/NoAuth";
+import { selectMesagesList } from "../../Redux/messages/selectors";
+import { messagesList } from "../../Redux/messages/actions";
 
 const Router = () => {
 
@@ -32,6 +34,7 @@ const Router = () => {
 
         return () => unsubscribe;
     }, [])
+
 
     return (
         <>

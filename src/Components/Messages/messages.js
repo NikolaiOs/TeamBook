@@ -4,12 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import './messages.css'
 
 import { selectMesagesList, selectReplyTo, selectMsgLoading, selectMsgError } from '../../Redux/messages/selectors';
-
-import { messagesList } from '../../Redux/messages/actions';
+import { messagesList, showMessages } from '../../Redux/messages/actions';
 import { selectPageId } from '../../Redux/reducers/bookReducer/bookSelector';
 import { Button } from '../Button/button';
 import { Form } from '../Form/form';
-
 import { CircularProgress } from "@mui/material";
 
 
@@ -18,9 +16,6 @@ export const Messages = () => {
 
     const dispatch = useDispatch();
     const messages = useSelector(selectMesagesList);
-
-    const replyToMsg = useSelector(selectReplyTo);
-
     const pageId = useSelector(selectPageId);
     const loading = useSelector(selectMsgLoading);
     const error = useSelector(selectMsgError);
@@ -34,6 +29,10 @@ export const Messages = () => {
         const unsubscribe = dispatch(messagesList(pageId));
         return () => unsubscribe;
     }, [pageId]);
+
+    useEffect(() => {
+        console.log('Сообщения изменились: ', messages);
+    }, [messages]);
 
     return (
         <>

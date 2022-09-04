@@ -31,6 +31,7 @@ export const register = async (email, pass) => await createUserWithEmailAndPassw
 export const logIn = async (email, pass) => await signInWithEmailAndPassword(auth, email, pass);
 export const logOut = async () => await signOut(auth);
 
+//работа с бд
 export const database = getDatabase(app);
 
 export const userRef = ref(database, 'users');

@@ -16,11 +16,12 @@ export const showMessages = (commentsList) => ({
 })
 
 
-export const fromReply = (boolean, msgId) => ({
+export const fromReply = (boolean, msgId, replyTo) => ({
     type: REPLY,
     payload: {
         isReply: boolean,
-        replyTo: msgId
+        topMsg: msgId,
+        replyTo: replyTo
     }
 })
 
@@ -48,7 +49,7 @@ export const messagesList = (bookPageId) => async (dispatch) => {
     });
 };
 
-export const handleSendMessage = (value, bookPageId, msgId) => async (dispatch) => {
+export const handleSendMessage = (value, bookPageId, msgId, replyToId) => async (dispatch) => {
     const date = new Date();
     const now = String(date.getDate()).padStart(2, '0') + '.' + String(date.getMonth() + 1).padStart(2, '0') + '.' + date.getFullYear();
     const newMsg = {
@@ -56,13 +57,17 @@ export const handleSendMessage = (value, bookPageId, msgId) => async (dispatch) 
         text: value,
         id: Date.now() + Math.ceil(Math.random() * 100),
         date: now,
-        replies: []
+
     };
+    if (msgId != null) { }
     // добавление сообщения в firebase
     if (msgId != null) {
+        newMsg.replyTo = replyToId;
         set(getReplyRefByMsgId(bookPageId, msgId, newMsg.id), newMsg);
-
-    } else set(getMessageRefById(bookPageId, newMsg.id), newMsg);
+    } else {
+        newMsg.replies = [];
+        set(getMessageRefById(bookPageId, newMsg.id), newMsg);
+    }
 }
 
 

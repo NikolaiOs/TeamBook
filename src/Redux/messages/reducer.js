@@ -7,23 +7,29 @@ const initialState = {
     messageList: [],
     isReply: null,
     replyTo: null,
+    topMsg: null,
     request: {
         loading: false,
         error: "",
     }
 };
-
+let messages
 export const messagesReducer = (state = initialState, { type, payload }) => {
     switch (type) {
+
         case SHOW_MESSAGES:
+            // let messages = Object.assign({}, payload.commentsList)
+            messages = payload.commentsList;
             return {
                 ...state,
-                messageList: payload.commentsList,
+                // messageList: payload.commentsList,
+                messageList: messages
             };
         case REPLY:
             return {
                 ...state,
                 isReply: payload.isReply,
+                topMsg: payload.topMsg,
                 replyTo: payload.replyTo
             };
         case REQUEST_MESSAGES_LOADING:

@@ -7,10 +7,10 @@ export function Message({ message }) {
 
     return (
 
-        <MessageShow messageToShow={message} >
+        <MessageShow messageToShow={message} messageToReply={message.id} >
             {replies.map(reply => {
                 return (
-                    <MessageShow className="reply" messageToShow={reply[1]} key={reply[0]}>
+                    <MessageShow className="reply" messageToShow={reply[1]} messageToReply={message.id} key={reply[0]}>
                     </MessageShow>
                 )
             })}
