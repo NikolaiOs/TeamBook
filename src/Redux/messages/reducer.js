@@ -13,17 +13,16 @@ const initialState = {
         error: "",
     }
 };
-let messages
+
 export const messagesReducer = (state = initialState, { type, payload }) => {
     switch (type) {
 
+
+
         case SHOW_MESSAGES:
-            // let messages = Object.assign({}, payload.commentsList)
-            messages = payload.commentsList;
             return {
                 ...state,
-                // messageList: payload.commentsList,
-                messageList: messages
+                messageList: payload,
             };
         case REPLY:
             return {

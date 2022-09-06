@@ -10,9 +10,8 @@ export const REQUEST_MESSAGES_FAILURE = "MESSAGES::REQUEST_FAILURE"
 
 export const showMessages = (commentsList) => ({
     type: SHOW_MESSAGES,
-    payload: {
-        commentsList: commentsList
-    }
+    payload: commentsList
+
 })
 
 

@@ -4,7 +4,6 @@ import { Form } from "../Form/form";
 import { useDispatch, useSelector } from "react-redux";
 import './messageToShow.css'
 import { fromReply } from "../../Redux/messages/actions";
-import { selectMesagesList } from "../../Redux/messages/selectors";
 import { SLICE_CHART } from "../../constants";
 
 export function MessageShow({ messageToShow, children, className, messageToReply }) {
@@ -13,12 +12,9 @@ export function MessageShow({ messageToShow, children, className, messageToReply
     const users = useSelector(selectUsersList);
     const userName = users.find(user => user.id === messageToShow.author)
 
-    const messages = useSelector(selectMesagesList);
-
     const [dotsAreShown, setDotsAreShown] = useState(true);
     const [sliceChart, setsliceChart] = useState(SLICE_CHART);
     const [replyFormIsShown, setReplyFormIsShown] = useState(false);
-
 
     function readMore() {
         setDotsAreShown(!dotsAreShown);

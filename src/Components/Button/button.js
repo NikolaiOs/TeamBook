@@ -1,10 +1,10 @@
 import "./button.css"
 
 
-export function Button({ onClick, value, className, type }) {
+export function Button({ onClick, className, type, children, ...rest }) {
 
     return (
-        <input className={`button ${className}`} type={type} value={value} onClick={onClick} />
+        <button className={`button ${className}`} type={type} onClick={onClick} {...rest}>{children}</button>
     )
 }
 

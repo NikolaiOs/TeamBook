@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MessageShow } from "../MessageToShow/messageToShow";
 
 export function Message({ message }) {
 
     const [replies, setReplies] = useState(Object.entries(message?.replies || []));
+
+    //!КОСТЫЛЬ, НО ПО-ДРУГОМУ НЕ ПРИДУМАЛА
+    useEffect(() => {
+        setReplies(Object.entries(message?.replies || []));
+    }, [message]);
 
     return (
 

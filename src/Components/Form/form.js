@@ -62,7 +62,7 @@ export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
                 <Input className='input__form' type="text" value={value}
                     inputRef={inputRef}
                     placeholder='Текст сообщения' onChange={handleChange} />
-                <Button value={'Отправить'} type='submit' className="button__mt3vm button__right" />
+                <Button type='submit' className="button__mt3vm button__right" >Отправить</Button>
                 {!isAuthed && modalActive && <PopUp active={modalActive} setActive={setModalActive}>
                     <h4>Оставлять комментарии могут только зарегистрированные пользователи</h4>
                 </PopUp>}
