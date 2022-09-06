@@ -3,13 +3,11 @@ import { Message } from '../Message/message';
 import { useDispatch, useSelector } from "react-redux";
 import './messages.css'
 
-import { selectMesagesList, selectReplyTo, selectMsgLoading, selectMsgError } from '../../Redux/messages/selectors';
-
+import { selectMesagesList, selectMsgLoading, selectMsgError } from '../../Redux/messages/selectors';
 import { messagesList } from '../../Redux/messages/actions';
 import { selectPageId } from '../../Redux/reducers/bookReducer/bookSelector';
 import { Button } from '../Button/button';
 import { Form } from '../Form/form';
-
 import { CircularProgress } from "@mui/material";
 
 
@@ -18,9 +16,6 @@ export const Messages = () => {
 
     const dispatch = useDispatch();
     const messages = useSelector(selectMesagesList);
-
-    const replyToMsg = useSelector(selectReplyTo);
-
     const pageId = useSelector(selectPageId);
     const loading = useSelector(selectMsgLoading);
     const error = useSelector(selectMsgError);
@@ -29,7 +24,6 @@ export const Messages = () => {
 
     const parentRef = useRef();
 
-    // !!!!!слушатель любого изменения в списке сообщений конкретного чата, но НЕ РАБОТАЕТ при добавлении ОТВЕТОВ на сообщения
     useEffect(() => {
         const unsubscribe = dispatch(messagesList(pageId));
         return () => unsubscribe;
@@ -40,7 +34,7 @@ export const Messages = () => {
             {loading ? <CircularProgress /> :
                 <>
                     <div ref={parentRef} className='messages__wrap'>
-                        <Button value={!formIsShown ? "Написать комментарий" : "Скрыть"} className="center" type="button" onClick={() => setFormIsShown(!formIsShown)}></Button>
+                        <Button className="center" type="button" onClick={() => setFormIsShown(!formIsShown)}>{!formIsShown ? "Написать комментарий" : "Скрыть"}</Button>
                         {formIsShown && <Form formIsShown={formIsShown} setFormIsShown={setFormIsShown} />}
 
                         <div className="messages">

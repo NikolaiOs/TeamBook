@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Home } from "../../Pages/Home";
 import { Books } from "../../Pages/Books";
 import { FreeBooks } from "../../Pages/FreeBooks";
@@ -8,14 +8,16 @@ import { BuySubscription } from "../../Pages/BuySubscription";
 import { NotFoundPage } from "../../Pages/NotFoundPage";
 import { Layout } from "../Layout";
 import { Reader } from "../../Pages/Reader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isAuthed, usersList } from "../../Redux/user/actions";
 import { SignIn } from "../../Pages/SignIn";
 import { User } from "../../Pages/User";
-import { SIGN_IN_LINK, SIGN_UP_LINK } from "../../constants";
-import { PopUp } from "../PopUp/popUp";
+import { NOAUTH_LINK, READER_LINK, SIGN_IN_LINK, SIGN_UP_LINK } from "../../constants";
+import { NoAuth } from "../../Pages/NoAuth";
+import { selectMesagesList } from "../../Redux/messages/selectors";
+import { messagesList } from "../../Redux/messages/actions";
 
-export const Router = () => {
+const Router = () => {
 
 
     const dispatch = useDispatch();
@@ -33,7 +35,6 @@ export const Router = () => {
         return () => unsubscribe;
     }, [])
 
-    const [modalActive, setModalActive] = useState(true);
 
     return (
         <>
@@ -44,14 +45,11 @@ export const Router = () => {
                     <Route path="freeBooks" element={<FreeBooks />} />
                     <Route path="genres" element={<Genres />} />
                     <Route path="buySubscription" element={<BuySubscription />} />
-                    <Route path={SIGN_UP_LINK} element={<SignIn />} />
-                    <Route path={SIGN_IN_LINK} element={<SignIn />} />
+                    {/* <Route path={SIGN_UP_LINK} element={<SignIn />} />
+                    <Route path={SIGN_IN_LINK} element={<SignIn />} /> */}
                     <Route path="user/:userId" element={<User />} />
-                    <Route path="reader" element={<Reader />} >
-                    </Route>
-                    <Route path="reader/noauth" element={<PopUp active={modalActive} setActive={setModalActive}>
-                        <>  <h4>Оставлять комментарии могут только зарегистрированные пользователи</h4></>
-                    </PopUp>} />
+                    <Route path={READER_LINK} element={<Reader />} > </Route>
+                    {/* <Route path={NOAUTH_LINK} element={<NoAuth />} /> */}
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </Routes>

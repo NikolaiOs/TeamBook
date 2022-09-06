@@ -69,13 +69,13 @@
     cursor: pointer;
 }
 
-.right-search__input {
+/* .right-search__input {
     background: #FFFFFF;
     border-radius: 50px;
     width: 305px;
     height: 40px;
     border: none;
-}
+} */
 
 .header__right-link {
     margin-right: 48px;
@@ -98,6 +98,7 @@
     line-height: 20px;
     text-decoration: none;
     color: #000000;
+    cursor: pointer;
 }
 
 .right-link__item_left {

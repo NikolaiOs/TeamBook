@@ -1,20 +1,42 @@
 import "../Styles/layout.css"
 import { Link, Outlet } from "react-router-dom";
-import { selectAuth, selectCurrentUser } from "../Redux/user/selectors";
-
+import { selectAuth, selectCurrentUser, selectUserError, selectUserLoading } from "../Redux/user/selectors";
 import { useSelector } from "react-redux";
 import { Button } from "./Button/button";
 import { logOut } from "../Services/firebase";
 import { SIGN_IN_LINK } from "../constants";
-
+import { SignIn } from "../Pages/SignIn";
+import { useEffect, useState } from "react";
+import { Input } from "./Input/input";
+import { filter, makeBooks } from "../helpers/filter";
 
 
 const Layout = () => {
 
     const currentUser = useSelector(selectCurrentUser);
     const isSignUp = useSelector(selectAuth);
+    const [modalActive, setModalActive] = useState(false);
+
+    const error = useSelector(selectUserError);
+    const loading = useSelector(selectUserLoading);
+
+    useEffect(() => {
+        if (error !== '') {
+            setModalActive(true);
+        }
+    }, [error, loading])
 
 
+    let [value, setValue] = useState('');
+    const handleChange = (e) => {
+        setValue(e.target.value);
+    }
+
+    //ПРОБНЫЙ ВАРИАНТ ПОИСКА КНИГ НА СТРАНИЦЕ, ПОКА ТОЛЬКО В КОНСОЛИ
+    useEffect(() => {
+        filter(makeBooks(), value);
+        console.log(' filter(arr, value);: ', filter(makeBooks(), value))
+    }, [value])
 
 
     const handleLogOut = async () => {
@@ -59,7 +81,7 @@ const Layout = () => {
                                         fill="#1D1D1D" />
                                 </svg>
                             </span>
-                            <input type="text" className="right-search__input" id="search__input" />
+                            <Input id="search__input" className='right-search__input' type="text" value={value} placeholder='Введите текст для поиска' onChange={handleChange} />
                         </div>
                         <div className="header__right-link header__right-link_color">
                             <Link className="right-link__item right-link__item_left" to="buySubscription">Купить подписку</Link>
@@ -68,12 +90,20 @@ const Layout = () => {
                             {isSignUp ?
                                 <div className="flex">
                                     <Link className="right-link__item" to={`/user/${currentUser?.id}`}>{currentUser?.name}</Link>
-                                    <Button onClick={handleLogOut} type={'button'} value={"Выход"}></Button>
+                                    <Button onClick={handleLogOut} type={'button'}>Выход</Button>
                                 </div>
-                                : <Link className="right-link__item" to={SIGN_IN_LINK} >Войти</Link>
+                                :
+                                <>
+                                    {/* вместо ссылки просто компонент условно рендерится, тогда наполнение на фоне не пропадает */}
+                                    {/* <Link className="right-link__item" to={SIGN_IN_LINK} >Войти</Link> */}
+                                    <p className="right-link__item" onClick={() => setModalActive(true)} >Войти</p>
+                                </>
                             }
                         </div>
                     </div>
+                    {modalActive &&
+                        <SignIn modalActive={modalActive} setModalActive={setModalActive}></SignIn>
+                    }
                 </div>
             </header>
             <Outlet />
