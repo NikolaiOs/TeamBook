@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { Home } from "../../Pages/Home";
 import { Books } from "../../Pages/Books";
 import { FreeBooks } from "../../Pages/FreeBooks";
@@ -8,15 +8,10 @@ import { BuySubscription } from "../../Pages/BuySubscription";
 import { NotFoundPage } from "../../Pages/NotFoundPage";
 import { Layout } from "../Layout";
 import { Reader } from "../../Pages/Reader";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { isAuthed, usersList } from "../../Redux/user/actions";
-import { SignIn } from "../../Pages/SignIn";
 import { User } from "../../Pages/User";
-import { NOAUTH_LINK, READER_LINK, SIGN_IN_LINK, SIGN_UP_LINK } from "../../constants";
-import { NoAuth } from "../../Pages/NoAuth";
-import { selectMesagesList } from "../../Redux/messages/selectors";
-import { messagesList } from "../../Redux/messages/actions";
-
+import { READER_LINK } from "../../constants";
 const Router = () => {
 
 

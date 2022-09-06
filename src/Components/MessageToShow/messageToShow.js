@@ -13,7 +13,6 @@ export function MessageShow({ messageToShow, children, className, messageToReply
     const userName = users.find(user => user.id === messageToShow.author)
 
     const [dotsAreShown, setDotsAreShown] = useState(true);
-    const [sliceChart, setsliceChart] = useState(SLICE_CHART);
     const [replyFormIsShown, setReplyFormIsShown] = useState(false);
 
     function readMore() {
@@ -34,8 +33,8 @@ export function MessageShow({ messageToShow, children, className, messageToReply
             {/* !Поменять на img */}
             < a href="#" className="message__profile_pic" > <div href="#" alt="profile"></div> </a >
             <a href="#" className="message__author">{userName?.name} </a>
-            <p className="message__text p">{messageToShow?.text.slice(0, sliceChart)}{dotsAreShown === true && messageToShow?.text.length > sliceChart ? <span>...</span> : <span>{messageToShow?.text.slice(sliceChart)}</span>} </p>
-            {messageToShow?.text.length > sliceChart && <div className="message__details" onClick={readMore}>{dotsAreShown === true ? "Показать полностью" : "Скрыть"}</div>}
+            <p className="message__text p">{messageToShow?.text.slice(0, SLICE_CHART)}{dotsAreShown === true && messageToShow?.text.length > SLICE_CHART ? <span>...</span> : <span>{messageToShow?.text.slice(SLICE_CHART)}</span>} </p>
+            {messageToShow?.text.length > SLICE_CHART && <div className="message__details" onClick={readMore}>{dotsAreShown === true ? "Показать полностью" : "Скрыть"}</div>}
 
 
 

@@ -4,7 +4,6 @@ import { selectAuth, selectCurrentUser, selectUserError, selectUserLoading } fro
 import { useSelector } from "react-redux";
 import { Button } from "./Button/button";
 import { logOut } from "../Services/firebase";
-import { SIGN_IN_LINK } from "../constants";
 import { SignIn } from "../Pages/SignIn";
 import { useEffect, useState } from "react";
 import { Input } from "./Input/input";

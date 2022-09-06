@@ -7,7 +7,6 @@ import { selectIsReply, selectReplyTo, selectTopMsgToReply } from '../../Redux/m
 import { fromReply, handleSendMessage } from '../../Redux/messages/actions';
 import { selectPageId } from '../../Redux/reducers/bookReducer/bookSelector';
 import { selectAuth } from '../../Redux/user/selectors';
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { PopUp } from '../PopUp/popUp';
 
 
@@ -15,7 +14,7 @@ export const Form = ({ setReplyFormIsShown, formIsShown, setFormIsShown }) => {
 
     const dispatch = useDispatch();
     const inputRef = useRef();
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
 
     let [value, setValue] = useState('');
     const [modalActive, setModalActive] = useState(false);
