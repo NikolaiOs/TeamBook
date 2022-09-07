@@ -8,7 +8,7 @@ export function makeBooks() {
             id: i,
             name: 'Book name' + i,
             author: 'Author name' + (i + 1),
-            cover: '../../public/Images/cover.jpeg'
+            cover: 'Images/cover.jpeg'
         }
         arr.push(item);
     }

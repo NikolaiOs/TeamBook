@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { isAuthed, usersList } from "../../Redux/user/actions";
 import { User } from "../../Pages/User";
 import { READER_LINK } from "../../constants";
+import { Book } from "../../Pages/Book";
 const Router = () => {
 
 
@@ -36,7 +37,8 @@ const Router = () => {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path="books" element={<Books />} />
+                    <Route path="books" element={<Books />} ></Route>
+                    <Route path="book/:bookId" element={<Book />} />
                     <Route path="freeBooks" element={<FreeBooks />} />
                     <Route path="genres" element={<Genres />} />
                     <Route path="buySubscription" element={<BuySubscription />} />

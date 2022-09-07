@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { PopUp } from "../Components/PopUp/popUp";
 import { CircularProgress } from "@mui/material";
 import { Input } from "../Components/Input/input";
 import { Button } from "../Components/Button/button";
-import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "../Styles/signIn.css"
 import { selectUserError, selectUserLoading } from "../Redux/user/selectors";
@@ -13,7 +12,7 @@ import { logInByClick, registerByClick } from "../Redux/user/actions";
 export const SignIn = ({ modalActive, setModalActive }) => {
     const dispatch = useDispatch();
 
-    let location = useLocation();
+    // let location = useLocation();
     const [isSignUp, setIsSignUp] = useState(false);
     // const [modalActive, setModalActive] = useState(true);
 
