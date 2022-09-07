@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { makeBooks } from "../helpers/filter";
-import '../Styles/books.css'
+import { makeBooks } from "../../helpers/filter";
+import './books.css'
 
 const Books = () => {
 
