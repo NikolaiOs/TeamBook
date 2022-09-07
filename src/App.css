@@ -8,8 +8,12 @@
 .link {
   text-align: center;
   cursor: pointer;
+  text-decoration: none;
 }
 
+.link:hover {
+  color: #F28D5F;
+}
 
 .center {
   margin: 0 auto;
@@ -29,6 +33,7 @@
 }
 
 .container {
-  margin: 2em auto;
+  margin: 0 auto;
   max-width: 1500px;
+  padding: 3em;
 }

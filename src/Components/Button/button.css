@@ -14,14 +14,15 @@
   }
   
   .button:hover {
-    background-color: #b3c1f5;
+    background-color: #EEE9E4;
+    color: #F28D5F;
   }
   
-  .button:active {
+  /* .button:active {
     background-color: #1c1649;
     color: white;
   }
-  
+   */
   .button__mt3vm {
     margin-top: 3vmin;
   }
