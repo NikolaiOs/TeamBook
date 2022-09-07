@@ -1,3 +1,26 @@
+
+.wrapper {
+    /* display: flex;
+    flex-direction: column;*/
+    min-height: 100vh; 
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+  
+.content {
+  
+}
+  
+.footer {
+  height: 10em;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #C9C9C9;
+  background-color: #FAFAFA; 
+}
+
 .header {
     width: 100%;
     background: #EEE9E4;

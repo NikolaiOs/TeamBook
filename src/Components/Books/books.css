@@ -1,13 +1,15 @@
 .books {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    row-gap: 2%;
+    /* с row-gap обрезается высота */
+    /* row-gap: 2%; */
 }
 
 
 .bookItem {
     width: 15em;
     justify-self: center;
+    margin: 5% 0;
 }
 
 .book__cover {

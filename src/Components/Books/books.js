@@ -8,7 +8,7 @@ const Books = () => {
     const book = makeBooks();
     return (
         <>
-            <section className="books">
+            <main className="books">
                 {book.map(book => {
                     return (
                         <Link className="bookItem" key={book.id} to={`/book/${book.id}`}>
@@ -20,7 +20,7 @@ const Books = () => {
                         </Link>
                     )
                 })}
-            </section>
+            </main>
         </>
     )
 }

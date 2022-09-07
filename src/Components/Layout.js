@@ -50,7 +50,7 @@ const Layout = () => {
     }
 
     return (
-        <>
+        <div className="wrapper">
             <header className="header">
                 <div className="header__container">
                     <div className="header__logo">
@@ -105,13 +105,15 @@ const Layout = () => {
                     }
                 </div>
             </header>
-            <div className="container">
-                <Outlet />
+            <div className="content">
+                <div className="container">
+                    <Outlet />
+                </div>
             </div>
-            <footer>
-                2022
+            <footer className="footer">
+                <p>2022</p>
             </footer>
-        </>
+        </div>
     )
 }
 
