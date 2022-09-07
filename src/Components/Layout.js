@@ -4,10 +4,10 @@ import { selectAuth, selectCurrentUser, selectUserError, selectUserLoading } fro
 import { useSelector } from "react-redux";
 import { Button } from "./Button/button";
 import { logOut } from "../Services/firebase";
-import { SignIn } from "../Pages/SignIn";
 import { useEffect, useState } from "react";
 import { Input } from "./Input/input";
 import { filter, makeBooks } from "../helpers/filter";
+import { SignIn } from "./SignIn/signIn";
 
 
 const Layout = () => {

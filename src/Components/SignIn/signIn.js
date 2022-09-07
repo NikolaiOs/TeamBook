@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { PopUp } from "../Components/PopUp/popUp";
 import { CircularProgress } from "@mui/material";
-import { Input } from "../Components/Input/input";
-import { Button } from "../Components/Button/button";
 import { useDispatch, useSelector } from "react-redux";
-import "../Styles/signIn.css"
-import { selectUserError, selectUserLoading } from "../Redux/user/selectors";
-import { SIGN_IN, SIGN_UP, } from "../constants";
-import { logInByClick, registerByClick } from "../Redux/user/actions";
+import "./signIn.css"
+import { selectUserError, selectUserLoading } from "../../Redux/user/selectors";
+import { logInByClick, registerByClick } from "../../Redux/user/actions";
+import { PopUp } from "../PopUp/popUp";
+import { Input } from "../Input/input";
+import { Button } from "../Button/button";
+import { SIGN_IN, SIGN_UP } from "../../constants";
 
 export const SignIn = ({ modalActive, setModalActive }) => {
     const dispatch = useDispatch();
