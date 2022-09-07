@@ -1,11 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { NOAUTH_LINK, READER_LINK, SIGN_UP_LINK } from '../../constants';
 import './popUp.css'
 
 export const PopUp = ({ active, setActive, children }) => {
-    let navigate = useNavigate();
-    let location = useLocation();
+    // let navigate = useNavigate();
+    // let location = useLocation();
 
     const ckickHandler = () => {
         setActive(false);

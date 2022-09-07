@@ -105,7 +105,9 @@ const Layout = () => {
                     }
                 </div>
             </header>
-            <Outlet />
+            <div className="container">
+                <Outlet />
+            </div>
             <footer>
                 2022
             </footer>

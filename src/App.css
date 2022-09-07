@@ -27,3 +27,8 @@
 .pointer {
   cursor: pointer;
 }
+
+.container {
+  margin: 2em auto;
+  max-width: 1500px;
+}

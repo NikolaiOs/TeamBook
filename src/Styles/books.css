@@ -1,0 +1,19 @@
+.books {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 2%;
+}
+
+
+.bookItem {
+    width: 15em;
+    justify-self: center;
+}
+
+.book__cover {
+    width: 100%;
+}
+
+.book__text {
+    text-align: center;
+}
