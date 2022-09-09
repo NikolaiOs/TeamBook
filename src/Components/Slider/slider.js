@@ -15,7 +15,7 @@ export const SliderComp = ({ books, settings }) => {
                 <Slider className="slider" {...settings}>
                     {books.map(book => {
                         return (
-                            <div>
+                            <div key={book.id}>
                                 <BookToShow book={book} />
                             </div>
                         )

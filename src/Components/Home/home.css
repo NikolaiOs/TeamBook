@@ -6,7 +6,7 @@
 font-family: 'Forum', cursive;
 font-size: 56px;
 line-height: 62px;
-margin: 2em 0;
+margin: 1em 0 2em;
 }
 
 .slick-arrow {
@@ -37,10 +37,6 @@ margin: 2em 0;
     grid-template-rows: 1fr 5fr;
     column-gap: 3em;
     row-gap: 5%;
-}
-
-.slick-slide div {
-    padding-right: 1em;
 }
 
 .slider_book-cover {

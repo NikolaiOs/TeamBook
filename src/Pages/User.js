@@ -5,6 +5,10 @@ export const User = () => {
     console.log("userId: ", userId);
 
     return (
-        <h1>User Page</h1>
+        <div className=" no-gradient">
+            <div className="container">
+                <h1>User Page</h1>
+            </div>
+        </div>
     )
 }

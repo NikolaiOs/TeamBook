@@ -13,6 +13,11 @@
 .gradient {
     background: linear-gradient(to bottom, #D8CDC3, #F5F5F5, #D8CDC3);
 }
+
+.no-gradient {
+    background-color: #FFFFFF;
+    height: 100%;
+}
   
 .footer {
   height: 10em;

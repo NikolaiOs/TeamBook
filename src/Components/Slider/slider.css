@@ -31,3 +31,7 @@
     text-decoration: none;
     color: black;
 }
+
+.slick-slide div {
+    padding: 0 0.5em;
+}

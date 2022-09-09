@@ -1,5 +1,5 @@
 import "../Styles/layout.css"
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { selectAuth, selectCurrentUser, selectUserError, selectUserLoading } from "../Redux/user/selectors";
 import { useSelector } from "react-redux";
 import { Button } from "./Button/button";
@@ -11,6 +11,8 @@ import { SignIn } from "./SignIn/signIn";
 
 
 const Layout = () => {
+
+    let navigate = useNavigate();
 
     const currentUser = useSelector(selectCurrentUser);
     const isSignUp = useSelector(selectAuth);
@@ -31,11 +33,13 @@ const Layout = () => {
         setValue(e.target.value);
     }
 
-    //ПРОБНЫЙ ВАРИАНТ ПОИСКА КНИГ НА СТРАНИЦЕ, ПОКА ТОЛЬКО В КОНСОЛИ
+    //ПРОБНЫЙ ВАРИАНТ ПОИСКА КНИГ НА СТРАНИЦЕ, ПОКА ТОЛЬКО В КОНСОЛИ. По идее далее надо в сторе передавать?
     const [filtered, setFiltered] = useState(makeBooks());
     useEffect(() => {
         setFiltered(filter(makeBooks(), value));
         console.log(' filter(arr, value);: ', filter(makeBooks(), value))
+        if (value !== '')
+            navigate('/books', { replace: true });
     }, [value])
 
     const handleLogOut = async () => {
@@ -105,10 +109,8 @@ const Layout = () => {
                     }
                 </div>
             </header>
-            <div className="content">
-                <div className="container">
-                    <Outlet />
-                </div>
+            <div className="content gradient">
+                <Outlet />
             </div>
             <footer className="footer">
                 <p>2022</p>
