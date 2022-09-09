@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "../../Pages/Home";
+import { Home } from "../Home/home";
 import { Books } from "../Books/books";
 import { FreeBooks } from "../../Pages/FreeBooks";
 import { Genres } from "../../Pages/Genres";
@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { isAuthed, usersList } from "../../Redux/user/actions";
 import { User } from "../../Pages/User";
 import { READER_LINK } from "../../constants";
-import { Book } from "../Book/book";
+import { BookPage } from "../BookPage/book";
 const Router = () => {
 
 
@@ -38,7 +38,7 @@ const Router = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="books" element={<Books />} ></Route>
-                    <Route path="book/:bookId" element={<Book />} />
+                    <Route path="book/:bookId" element={<BookPage />} />
                     <Route path="freeBooks" element={<FreeBooks />} />
                     <Route path="genres" element={<Genres />} />
                     <Route path="buySubscription" element={<BuySubscription />} />

@@ -116,7 +116,7 @@ export const SignIn = ({ modalActive, setModalActive }) => {
                         {/* <Link to={location.pathname === SIGN_UP_LINK ? SIGN_IN_LINK : SIGN_UP_LINK} className="link">
                             {location.pathname === SIGN_UP_LINK ? SIGN_IN : SIGN_UP}
                         </Link> */}
-                        <p className="link" onClick={() => setIsSignUp(!isSignUp)}> {isSignUp ? SIGN_IN : SIGN_UP}</p>
+                        <p className="link link__auth" onClick={() => setIsSignUp(!isSignUp)}> {isSignUp ? SIGN_IN : SIGN_UP}</p>
                         {error && <h4>{error}</h4>}
                     </>
                 }

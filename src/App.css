@@ -4,19 +4,18 @@
 /*    outline-color: gray;*/
 /*}*/
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  height: 100%;
-}
 
 .link {
-  text-align: center;
   cursor: pointer;
+}
+
+.link__auth {
+ text-align: center;
+ margin-top: 1em;
+}
+
+.link:hover {
+  color: #F28D5F;
 }
 
 .center {
@@ -38,6 +37,10 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 1500px;
-  padding: 2em 0;
+  max-width: 1320px;
+  padding: 2em;
+}
+
+.no-decoration {
+  text-decoration: none;
 }

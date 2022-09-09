@@ -9,9 +9,9 @@
     text-decoration: none;
   }
 
-  .message__author:hover, .message__reply:hover, .message__complain:hover, .message__details:hover  {
+  /* .message__author:hover, .message__reply:hover, .message__complain:hover, .message__details:hover  {
  color: #F28D5F;
-  }
+  } */
 
   .message__text {
     word-break: break-word;

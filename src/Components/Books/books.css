@@ -1,21 +1,9 @@
 .books {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(min(10em, 15%), 1fr));
     /* с row-gap обрезается высота */
     /* row-gap: 2%; */
-}
-
-
-.bookItem {
-    width: 15em;
     justify-self: center;
-    margin: 5% 0;
-}
+    column-gap: 5%;
 
-.book__cover {
-    width: 100%;
-}
-
-.book__text {
-    text-align: center;
 }

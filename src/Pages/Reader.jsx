@@ -51,7 +51,7 @@ const Reader = () => {
 
     return (
         <>
-            <section className="reader">
+            <main className="reader">
                 <div className="reader__container">
                     <div className="reader__header">
                         <nav className="reader__header-nav">
@@ -93,7 +93,7 @@ const Reader = () => {
                         </nav>
                     </div>
                 </div>
-            </section>
+            </main>
 
             <Container sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button onClick={scrollBack}><img src='Vector.svg' alt='' /></Button>

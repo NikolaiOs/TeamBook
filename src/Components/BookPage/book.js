@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-export const Book = () => {
+export const BookPage = () => {
     const { bookId } = useParams();
 
     return (

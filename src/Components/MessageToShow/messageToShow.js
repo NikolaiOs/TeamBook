@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import './messageToShow.css'
 import { fromReply } from "../../Redux/messages/actions";
 import { SLICE_CHART } from "../../constants";
+import { Link } from "react-router-dom";
 
 export function MessageShow({ messageToShow, children, className, messageToReply }) {
     const dispatch = useDispatch();
@@ -31,17 +32,17 @@ export function MessageShow({ messageToShow, children, className, messageToReply
     return (
         <div className={`message__item ${className}`} >
             {/* !Поменять на img */}
-            < a href="#" className="message__profile_pic" > <div href="#" alt="profile"></div> </a >
-            <a href="#" className="message__author">{userName?.name} </a>
+            < Link to="#" className="message__profile_pic" > <div href="#" alt="profile"></div> </Link >
+            <Link to="#" className="message__author link">{userName?.name} </Link>
             <p className="message__text p">{messageToShow?.text.slice(0, SLICE_CHART)}{dotsAreShown === true && messageToShow?.text.length > SLICE_CHART ? <span>...</span> : <span>{messageToShow?.text.slice(SLICE_CHART)}</span>} </p>
-            {messageToShow?.text.length > SLICE_CHART && <div className="message__details" onClick={readMore}>{dotsAreShown === true ? "Показать полностью" : "Скрыть"}</div>}
+            {messageToShow?.text.length > SLICE_CHART && <div className="message__details link" onClick={readMore}>{dotsAreShown === true ? "Показать полностью" : "Скрыть"}</div>}
 
 
 
             <div className="message__bottom flex">
                 <p className="message__date p">{messageToShow.date}</p>
-                <div className="message__reply pointer p" onClick={() => replyBtnHandler(messageToShow.id)} >Ответить</div>
-                <div className="message__complain pointer p">Пожаловаться</div>
+                <div className="message__reply p link" onClick={() => replyBtnHandler(messageToShow.id)} >Ответить</div>
+                <div className="message__complain p link">Пожаловаться</div>
             </div>
 
             {replyFormIsShown && <Form setReplyFormIsShown={setReplyFormIsShown}></Form>}

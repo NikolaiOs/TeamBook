@@ -32,11 +32,11 @@ const Layout = () => {
     }
 
     //ПРОБНЫЙ ВАРИАНТ ПОИСКА КНИГ НА СТРАНИЦЕ, ПОКА ТОЛЬКО В КОНСОЛИ
+    const [filtered, setFiltered] = useState(makeBooks());
     useEffect(() => {
-        filter(makeBooks(), value);
+        setFiltered(filter(makeBooks(), value));
         console.log(' filter(arr, value);: ', filter(makeBooks(), value))
     }, [value])
-
 
     const handleLogOut = async () => {
         try {
@@ -66,9 +66,9 @@ const Layout = () => {
                             </span>
                         </Link>
                         <nav className="header__left-nav">
-                            <Link className="left-nav__link" to="books">Книги</Link>
-                            <Link className="left-nav__link" to="freeBooks">Бесплатные книги</Link>
-                            <Link className="left-nav__link" to="genres">Жанры</Link>
+                            <Link className="left-nav__link link" to="books">Книги</Link>
+                            <Link className="left-nav__link link" to="freeBooks">Бесплатные книги</Link>
+                            <Link className="left-nav__link link" to="genres">Жанры</Link>
                         </nav>
                     </div>
                     <div className="header__right">
@@ -83,7 +83,7 @@ const Layout = () => {
                             <Input id="search__input" className='right-search__input' type="text" value={value} placeholder='Введите текст для поиска' onChange={handleChange} />
                         </div>
                         <div className="header__right-link header__right-link_color">
-                            <Link className="right-link__item right-link__item_left" to="buySubscription">Купить подписку</Link>
+                            <Link className="no-decoration " to="buySubscription"><Button className="right-link__item right-link__item_left">Купить подписку</Button></Link>
                         </div>
                         <div className="header__right-link">
                             {isSignUp ?
@@ -95,7 +95,7 @@ const Layout = () => {
                                 <>
                                     {/* вместо ссылки просто компонент условно рендерится, тогда наполнение на фоне не пропадает */}
                                     {/* <Link className="right-link__item" to={SIGN_IN_LINK} >Войти</Link> */}
-                                    <p className="right-link__item" onClick={() => setModalActive(true)} >Войти</p>
+                                    <p className="right-link__item link" onClick={() => setModalActive(true)} >Войти</p>
                                 </>
                             }
                         </div>
