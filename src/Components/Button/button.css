@@ -22,8 +22,8 @@
   .button:active {
     background-color: #EEE9E4;
     color: #F28D5F;
-  }
-  
+}
+
   .button__mt3vm {
     margin-top: 3vmin;
   }
