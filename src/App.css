@@ -6,14 +6,21 @@
 
 
 .link {
-  text-align: center;
   cursor: pointer;
   text-decoration: none;
 }
 
+
 .link:hover {
   color: #F28D5F;
 }
+
+.link__auth {
+ text-align: center;
+ margin-top: 1em;
+}
+
+
 
 .center {
   margin: 0 auto;
@@ -34,6 +41,10 @@
 
 .container {
   margin: 0 auto;
-  max-width: 1500px;
-  padding: 3em;
+  max-width: 1320px;
+  padding: 2em;
+}
+
+.no-decoration {
+  text-decoration: none;
 }

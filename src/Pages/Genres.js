@@ -2,8 +2,12 @@ import React from "react";
 
 const Genres = () => {
     return (
-        <h1>Genres</h1>
+        <div className=" no-gradient">
+            <div className="container">
+                <h1>Genres</h1>
+            </div>
+        </div>
     )
 }
 
-export {Genres}
+export { Genres }

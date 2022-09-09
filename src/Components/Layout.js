@@ -1,5 +1,5 @@
 import "../Styles/layout.css"
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { selectAuth, selectCurrentUser, selectUserError, selectUserLoading } from "../Redux/user/selectors";
 import { useSelector } from "react-redux";
 import { Button } from "./Button/button";
@@ -11,6 +11,8 @@ import { SignIn } from "./SignIn/signIn";
 
 
 const Layout = () => {
+
+    let navigate = useNavigate();
 
     const currentUser = useSelector(selectCurrentUser);
     const isSignUp = useSelector(selectAuth);
@@ -31,12 +33,14 @@ const Layout = () => {
         setValue(e.target.value);
     }
 
-    //ПРОБНЫЙ ВАРИАНТ ПОИСКА КНИГ НА СТРАНИЦЕ, ПОКА ТОЛЬКО В КОНСОЛИ
+    //ПРОБНЫЙ ВАРИАНТ ПОИСКА КНИГ НА СТРАНИЦЕ, ПОКА ТОЛЬКО В КОНСОЛИ. По идее далее надо в сторе передавать?
+    const [filtered, setFiltered] = useState(makeBooks());
     useEffect(() => {
-        filter(makeBooks(), value);
+        setFiltered(filter(makeBooks(), value));
         console.log(' filter(arr, value);: ', filter(makeBooks(), value))
+        if (value !== '')
+            navigate('/books', { replace: true });
     }, [value])
-
 
     const handleLogOut = async () => {
         try {
@@ -50,7 +54,7 @@ const Layout = () => {
     }
 
     return (
-        <>
+        <div className="wrapper">
             <header className="header">
                 <div className="header__container">
                     <div className="header__logo">
@@ -66,9 +70,9 @@ const Layout = () => {
                             </span>
                         </Link>
                         <nav className="header__left-nav">
-                            <Link className="left-nav__link" to="books">Книги</Link>
-                            <Link className="left-nav__link" to="freeBooks">Бесплатные книги</Link>
-                            <Link className="left-nav__link" to="genres">Жанры</Link>
+                            <Link className="left-nav__link link" to="books">Книги</Link>
+                            <Link className="left-nav__link link" to="freeBooks">Бесплатные книги</Link>
+                            <Link className="left-nav__link link" to="genres">Жанры</Link>
                         </nav>
                     </div>
                     <div className="header__right">
@@ -83,7 +87,7 @@ const Layout = () => {
                             <Input id="search__input" className='right-search__input' type="text" value={value} placeholder='Введите текст для поиска' onChange={handleChange} />
                         </div>
                         <div className="header__right-link header__right-link_color">
-                            <Link className="right-link__item right-link__item_left" to="buySubscription">Купить подписку</Link>
+                            <Link className="no-decoration " to="buySubscription"><Button className="right-link__item right-link__item_left">Купить подписку</Button></Link>
                         </div>
                         <div className="header__right-link">
                             {isSignUp ?
@@ -95,7 +99,7 @@ const Layout = () => {
                                 <>
                                     {/* вместо ссылки просто компонент условно рендерится, тогда наполнение на фоне не пропадает */}
                                     {/* <Link className="right-link__item" to={SIGN_IN_LINK} >Войти</Link> */}
-                                    <p className="right-link__item" onClick={() => setModalActive(true)} >Войти</p>
+                                    <p className="right-link__item link" onClick={() => setModalActive(true)} >Войти</p>
                                 </>
                             }
                         </div>
@@ -105,13 +109,13 @@ const Layout = () => {
                     }
                 </div>
             </header>
-            <div className="container">
+            <div className="content gradient">
                 <Outlet />
             </div>
-            <footer>
-                2022
+            <footer className="footer">
+                <p>2022</p>
             </footer>
-        </>
+        </div>
     )
 }
 
