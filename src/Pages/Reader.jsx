@@ -1,40 +1,105 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "../Styles/reader.css"
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import {Container, CssBaseline} from "@mui/material";
+import {Container, CssBaseline, Input, Skeleton} from "@mui/material";
 import {error, getBookSelector, loader} from "../Redux/reducers/bookReducer/bookSelector";
 import {loadBooks} from "../Redux/reducers/bookReducer/bookReducer";
-import {PaginationControl} from "../Components/PaginationControl";
+import Grid from "@mui/material/Grid";
+import Slider from "@mui/material/Slider";
+import {styled} from "@mui/material/styles";
+import {getBooks} from "../Redux/action";
+
 
 const Reader = () => {
     const dispatch = useDispatch();
-    const loading = useSelector(loader);
+    const [loading, setLoading] = useState(false);
     const err = useSelector(error);
-
     const books  = useSelector(getBookSelector);
+    const ref = useRef();
+    const [scrollWidth, setScrollWidth] = useState(0);
+    const [clientWidth, setClientWidth] = useState(0);
+    const [pageAmount, setPageAmount] = useState(0);
+    const [value, setValue] = useState(0);
 
 
 
+
+
+    // setTimeout(() => setLoading(prev => !prev), 2000)
 
 
     useEffect( () => {
+
         dispatch(loadBooks());
+        setLoading(true);
+        setTimeout(() => init, 2000)
+        setTimeout(() => setLoading(false), 1000)
+
+        // console.log(scrollLength, pageAmountSize, pageAmount)
         }, []
     );
 
+    useEffect(() => {
+
+        console.log(pageAmount)
+        console.log(loading)
+
+
+    }, [loading])
+
+const init = () => {
+    setScrollWidth(ref.current.scrollWidth)
+    setClientWidth(ref.current.clientWidth)
+    setPageAmount((Math.ceil( scrollWidth / clientWidth)));
+    setValue(pageAmount);
+}
 
     const scroll = () => {
         const main = document.getElementById('main');
-        main.scrollLeft += 600;
+        main.scrollLeft += 1200 + 16;
+        // let { scrollLeft, scrollWidth, clientWidth } = ref.current;
+        // const pageAmount = Math.ceil(scrollWidth / clientWidth)
+        //         console.log(pageAmount)
+        //         if (scrollLeft + clientWidth === scrollWidth) {
+        //         }
     }
 
     const scrollBack = () => {
         const main = document.getElementById('main');
-        main.scrollLeft += -600;
+        main.scrollLeft -= 1200 + 16;
+        // console.log(scrollLength)
     }
+
+    // const onScroll = () => {
+    //
+    //     if (listInnerRef.current) {
+    //         const { scrollLeft, scrollWidth, clientWidth } = listInnerRef.current;
+    //         if (scrollLeft + clientWidth === scrollWidth) {
+    //             // This will be triggered after hitting the last element.
+    //             // API call should be made here while implementing pagination.
+    //         }
+    //     }
+    // };
+
+    const handleSliderChange = (event, newValue) => {
+        console.log(pageAmount)
+        setValue(newValue);
+    };
+
+    const handleInputChange = (event) => {
+        setValue(event.target.value === '' ? '' : Number(event.target.value));
+    };
+
+    const handleBlur = () => {
+        if (value < 0) {
+            setValue(0);
+        } else if (value > 100) {
+            setValue(pageAmount);
+        }
+    };
 
     if(loading) {
         return (
@@ -98,25 +163,53 @@ const Reader = () => {
             </section>
             <div style={{display: "flex"}}>
             <Button onClick={scrollBack}><img src='Vector.svg' alt=''/></Button>
-                <Container>
+                <Container sx={{ maxWidth: '1280px',
+                    padding: '40px 78px' }}>
                     <div className='chapter' style={{ display: 'flex',
                         justifyContent: 'space-around' }}>
                         <h4>Льюис Кэролл</h4>
                         <h4>Алиса в стране чудес</h4>
                     </div>
-                        <Box id='main' whiteSpace='pre-line' sx={{columnCount: 2,
+                        <Box id='main' sx={{columnCount: 2,
                         columnGap: '64px',
-                        overflow: 'hidden',
+                        overflowY: 'auto',
                         height: '772px',
                         columnWidth: '544px',
-                        textAlign: 'justify'}}>
+                        textAlign: 'justify'}}
+                        ref={ref}>
                         <CssBaseline/>
                             {books}
                         </Box>
-                    <PaginationControl/>
+                    <Box sx={{ width: '90%', position: 'relative', left: '5%'}}>
+                        <Grid container spacing={2}>
+                            <Grid item xs>
+                                <Slider
+                                    value={typeof value === 'number' ? value : 0}
+                                    onChange={handleSliderChange}
+                                    aria-labelledby="input-slider"
+                                />
+                            </Grid>
+                            <Grid item>
+                                <Input
+                                    value={value}
+                                    size="medium"
+                                    onChange={handleInputChange}
+                                    onBlur={handleBlur}
+                                    inputProps={{
+                                        step: 1000,
+                                        min: 0,
+                                        max: pageAmount,
+                                        type: 'number',
+                                        'aria-labelledby': 'input-slider',
+                                    }}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Box>
                 </Container>
             <Button onClick={scroll}><img src='Vector2.svg' alt=''/></Button>
             </div>
+
             <Box component='footer' sx={{flexGrow: 1, display: 'flex', justifyContent: 'center'}}>
                 <Button style={{borderRadius: 30, backgroundColor: '#A7A7A7', color: 'black'}}>написать комментарий</Button>
             </Box>
