@@ -19,87 +19,39 @@ const Reader = () => {
     const err = useSelector(error);
     const books  = useSelector(getBookSelector);
     const ref = useRef();
-    const [scrollWidth, setScrollWidth] = useState(0);
-    const [clientWidth, setClientWidth] = useState(0);
-    const [pageAmount, setPageAmount] = useState(0);
-    const [value, setValue] = useState(0);
-
-
-
-
-
-    // setTimeout(() => setLoading(prev => !prev), 2000)
+    const [scrollWidth, setScrollWidth] = useState(1);
+    const [clientWidth, setClientWidth] = useState(1);
+    const [value, setValue] = useState(1);
 
 
     useEffect( () => {
-
+        setLoading(true)
         dispatch(loadBooks());
-        setLoading(true);
-        setTimeout(() => init, 2000)
-        setTimeout(() => setLoading(false), 1000)
-
-        // console.log(scrollLength, pageAmountSize, pageAmount)
+        setLoading(false)
+        setTimeout(() => setScrollWidth(ref.current.scrollWidth), 100)
+        setTimeout(() => setClientWidth(ref.current.clientWidth), 100)
         }, []
     );
 
-    useEffect(() => {
 
-        console.log(pageAmount)
-        console.log(loading)
-
-
-    }, [loading])
-
-const init = () => {
-    setScrollWidth(ref.current.scrollWidth)
-    setClientWidth(ref.current.clientWidth)
-    setPageAmount((Math.ceil( scrollWidth / clientWidth)));
-    setValue(pageAmount);
-}
 
     const scroll = () => {
         const main = document.getElementById('main');
         main.scrollLeft += 1200 + 16;
-        // let { scrollLeft, scrollWidth, clientWidth } = ref.current;
-        // const pageAmount = Math.ceil(scrollWidth / clientWidth)
-        //         console.log(pageAmount)
-        //         if (scrollLeft + clientWidth === scrollWidth) {
-        //         }
+        if(value < (Math.ceil(scrollWidth / clientWidth)))
+        {
+            setValue(prev => prev + 1);
+        }
     }
 
     const scrollBack = () => {
         const main = document.getElementById('main');
         main.scrollLeft -= 1200 + 16;
-        // console.log(scrollLength)
-    }
-
-    // const onScroll = () => {
-    //
-    //     if (listInnerRef.current) {
-    //         const { scrollLeft, scrollWidth, clientWidth } = listInnerRef.current;
-    //         if (scrollLeft + clientWidth === scrollWidth) {
-    //             // This will be triggered after hitting the last element.
-    //             // API call should be made here while implementing pagination.
-    //         }
-    //     }
-    // };
-
-    const handleSliderChange = (event, newValue) => {
-        console.log(pageAmount)
-        setValue(newValue);
-    };
-
-    const handleInputChange = (event) => {
-        setValue(event.target.value === '' ? '' : Number(event.target.value));
-    };
-
-    const handleBlur = () => {
-        if (value < 0) {
-            setValue(0);
-        } else if (value > 100) {
-            setValue(pageAmount);
+        if(value < (Math.ceil(scrollWidth / clientWidth)) && value !== 1)
+        {
+            setValue(prev => prev - 1);
         }
-    };
+    }
 
     if(loading) {
         return (
@@ -115,7 +67,6 @@ const init = () => {
             </div>
         )
     }
-
     return (
         <>
             <section className="reader">
@@ -180,32 +131,9 @@ const init = () => {
                         <CssBaseline/>
                             {books}
                         </Box>
-                    <Box sx={{ width: '90%', position: 'relative', left: '5%'}}>
-                        <Grid container spacing={2}>
-                            <Grid item xs>
-                                <Slider
-                                    value={typeof value === 'number' ? value : 0}
-                                    onChange={handleSliderChange}
-                                    aria-labelledby="input-slider"
-                                />
-                            </Grid>
-                            <Grid item>
-                                <Input
-                                    value={value}
-                                    size="medium"
-                                    onChange={handleInputChange}
-                                    onBlur={handleBlur}
-                                    inputProps={{
-                                        step: 1000,
-                                        min: 0,
-                                        max: pageAmount,
-                                        type: 'number',
-                                        'aria-labelledby': 'input-slider',
-                                    }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Box>
+                        <div>
+                            <h5 style={{textAlign: "center"}}>Страница {value} из {Math.ceil(scrollWidth / clientWidth)}</h5>
+                        </div>
                 </Container>
             <Button onClick={scroll}><img src='Vector2.svg' alt=''/></Button>
             </div>
@@ -214,7 +142,6 @@ const init = () => {
                 <Button style={{borderRadius: 30, backgroundColor: '#A7A7A7', color: 'black'}}>написать комментарий</Button>
             </Box>
         </>
-    )
-}
+    )}
 
 export {Reader}
