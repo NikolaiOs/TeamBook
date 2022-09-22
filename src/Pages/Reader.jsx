@@ -4,7 +4,17 @@ import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import {Container, CssBaseline, Input, Skeleton} from "@mui/material";
+import {
+    Container,
+    CssBaseline,
+    Input,
+    Skeleton,
+    Select,
+    Option,
+    FormControl,
+    InputLabel,
+    NativeSelect
+} from "@mui/material";
 import {error, getBookSelector, loader} from "../Redux/reducers/bookReducer/bookSelector";
 import {loadBooks} from "../Redux/reducers/bookReducer/bookReducer";
 import Grid from "@mui/material/Grid";
@@ -22,6 +32,7 @@ const Reader = () => {
     const [scrollWidth, setScrollWidth] = useState(1);
     const [clientWidth, setClientWidth] = useState(1);
     const [value, setValue] = useState(1);
+    const arr_book = [1,2,3,4,5,6,7];
 
 
     useEffect( () => {
@@ -33,7 +44,9 @@ const Reader = () => {
         }, []
     );
 
+    const selectBook = (e) => {
 
+    }
 
     const scroll = () => {
         const main = document.getElementById('main');
@@ -107,6 +120,22 @@ const Reader = () => {
                                         </defs>
                                     </svg>
                                 </div>
+                                <FormControl fullWidth>
+                                    <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                                        Book Select
+                                    </InputLabel>
+                                    <NativeSelect
+                                        defaultValue={arr_book[1]}
+                                        inputProps={{
+                                            name: 'Books',
+                                            id: 'uncontrolled-native',
+                                        }}
+                                    >
+                                        {arr_book.map((el) => (
+                                            <option onClick={} value={el}>{el}</option>
+                                        ))}
+                                    </NativeSelect>
+                                </FormControl>
                             </div>
                         </nav>
                     </div>
