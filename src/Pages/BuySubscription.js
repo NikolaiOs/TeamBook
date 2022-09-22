@@ -2,8 +2,12 @@ import React from "react";
 
 const BuySubscription = () => {
     return (
-        <h1>Buy a subscription</h1>
+        <div className=" no-gradient">
+            <div className="container">
+                <h1>Buy a subscription</h1>
+            </div>
+        </div>
     )
 }
 
-export {BuySubscription}
+export { BuySubscription }
