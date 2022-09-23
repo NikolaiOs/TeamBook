@@ -39,17 +39,15 @@ export const bookReducer = (state = initialState, action) => {
 }
 
 export const loadBooks = () => {
-
-
     return async dispatch => {
         dispatch(getLoading())
         try {
-            const response = await fetch('https://catfact.ninja/fact?max_length=5000');
+            const response = await fetch(`/Book${2}.txt`);
             if (!response.ok) {
                 throw new Error(`Request failed with status ${response.status}`);
             }
-            const data = await response.json();
-            dispatch(getBooks(data))
+            const result = await response.text();
+            dispatch(getBooks(result))
         } catch (e) {
             dispatch(getError(e))
         }
