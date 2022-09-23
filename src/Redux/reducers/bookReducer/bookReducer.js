@@ -2,7 +2,7 @@ import { ERROR_BOOKS, GET_BOOKS, LOADING_BOOKS, PAGE_ID_BOOKS } from "../../acti
 import { getError, getLoading, getBooks } from "../../action";
 
 const initialState = {
-    bookList: {},
+    bookList: [],
     loader: false,
     error: null,
     bookPageId: 10

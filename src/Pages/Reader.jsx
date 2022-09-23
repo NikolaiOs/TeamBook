@@ -131,8 +131,8 @@ const Reader = () => {
                     padding: '40px 78px' }}>
                     <div className='chapter' style={{ display: 'flex',
                         justifyContent: 'space-around' }}>
-                        <h4>Льюис Кэролл</h4>
-                        <h4>Алиса в стране чудес</h4>
+                        <h4>Федор Достоевский</h4>
+                        <h4>Преступление и наказание</h4>
                     </div>
                     <Box id='main' sx={{columnCount: 2,
                         columnGap: '64px',
