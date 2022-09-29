@@ -20,13 +20,14 @@
 }
   
 .footer {
-  height: 10em;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  color: #C9C9C9;
-  background-color: #FAFAFA; 
+    height: 10em;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #C9C9C9;
+    background-color: #FAFAFA;
+    user-select: none;
 }
 
 .header {
