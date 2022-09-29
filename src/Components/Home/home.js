@@ -42,7 +42,6 @@ const Home = ({ books = makeBooks() }) => {
     return (
         <div className="container">
             <main className="home gradient">
-                <Link to="/reader">Reader</Link>
                 <section className="home__text"><p> Читай!</p>
                     <p> Будь в моменте </p>
                     <p> — делись эмоциями!</p>

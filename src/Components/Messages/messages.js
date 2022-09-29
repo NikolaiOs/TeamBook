@@ -32,7 +32,7 @@ export const Messages = () => {
         <>
             {loading ? <CircularProgress /> :
                 <>
-                    <section ref={parentRef} className='messages__wrap'>
+                    <section ref={parentRef} className='messages__wrap messages__wrap_layout-info'>
                         <Button className="center" type="button" onClick={() => setFormIsShown(!formIsShown)}>{!formIsShown ? "Написать комментарий" : "Скрыть"}</Button>
                         {formIsShown && <Form formIsShown={formIsShown} setFormIsShown={setFormIsShown} />}
 
