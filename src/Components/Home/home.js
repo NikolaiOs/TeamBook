@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
-import { makeBooks } from "../../helpers/filter";
+import { MakeBooks } from "../../helpers/filter";
 import './home.css'
 import { BookToShow } from "../BookToShow/bookToShow";
 import { SliderComp } from "../Slider/slider";
 import Slider from "react-slick";
+import {useSelector} from "react-redux";
+import {loader} from "../../Redux/reducers/bookReducer/bookSelector";
+import React from "react";
 // https://react-slick.neostack.com/docs/api
 
-const Home = ({ books = makeBooks() }) => {
+const Home = ({ books = MakeBooks() }) => {
 
     const settings = {
         infinite: true,
@@ -39,10 +42,17 @@ const Home = ({ books = makeBooks() }) => {
         autoplay: true
     };
 
+    const loading = useSelector(loader);
+
+    if(loading) {
+        return (
+            <h1>One moment...</h1>
+        )
+    }
+
     return (
         <div className="container">
             <main className="home gradient">
-                <Link to="/reader">Reader</Link>
                 <section className="home__text"><p> Читай!</p>
                     <p> Будь в моменте </p>
                     <p> — делись эмоциями!</p>

@@ -6,8 +6,9 @@ import { Button } from "./Button/button";
 import { logOut } from "../Services/firebase";
 import { useEffect, useState } from "react";
 import { Input } from "./Input/input";
-import { filter, makeBooks } from "../helpers/filter";
+import { filter } from "../helpers/filter";
 import { SignIn } from "./SignIn/signIn";
+import { MakeBooks } from "../helpers/filter";
 
 
 const Layout = () => {
@@ -34,13 +35,13 @@ const Layout = () => {
     }
 
     //ПРОБНЫЙ ВАРИАНТ ПОИСКА КНИГ НА СТРАНИЦЕ, ПОКА ТОЛЬКО В КОНСОЛИ. По идее далее надо в сторе передавать?
-    const [filtered, setFiltered] = useState(makeBooks());
-    useEffect(() => {
-        setFiltered(filter(makeBooks(), value));
-        console.log(' filter(arr, value);: ', filter(makeBooks(), value))
-        if (value !== '')
-            navigate('/books', { replace: true });
-    }, [value])
+    // const [filtered, setFiltered] = useState(MakeBooks);
+    // useEffect(() => {
+    //     setFiltered(filter(MakeBooks, value));
+    //     console.log(' filter(arr, value);: ', filter(MakeBooks, value))
+    //     if (value !== '')
+    //         navigate('/books', { replace: true });
+    // }, [value])
 
     const handleLogOut = async () => {
         try {

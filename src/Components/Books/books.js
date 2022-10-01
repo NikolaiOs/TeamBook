@@ -1,12 +1,21 @@
 import React from "react";
-import { makeBooks } from "../../helpers/filter";
+import { MakeBooks } from "../../helpers/filter";
 import { BookToShow } from "../BookToShow/bookToShow";
 import './books.css'
+import {useSelector} from "react-redux";
+import {loader} from "../../Redux/reducers/bookReducer/bookSelector";
 
-const Books = ({ books = makeBooks() }) => {
 
+const Books = ({ books = MakeBooks() }) => {
+
+    const loading = useSelector(loader);
+
+if(loading) {
     return (
-
+        <h1>One moment...</h1>
+    )
+}
+    return (
         <div className=" no-gradient">
             <div className="container">
                 <main className="books">

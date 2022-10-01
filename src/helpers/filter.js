@@ -1,21 +1,37 @@
-export function makeBooks() {
-    let arr = [];
-    const length = 25;
+import {useDispatch, useSelector} from "react-redux";
+import {error, getBookSelector, loader} from "../Redux/reducers/bookReducer/bookSelector";
+import {loadBooks} from "../Redux/reducers/bookReducer/bookReducer";
+import {useEffect, useState} from "react";
+import React from 'react';
 
 
-    for (let i = 0; i < length; i++) {
-        let item = {
-            id: i,
-            name: 'Book name' + i,
-            author: 'Author name' + (i + 1),
-            cover: 'Images/cover.jpeg',
-            description: 'Брошенный за решетку на три долгих года, неразговорчивый парень по прозвищу Тень терпеливо ждет того дня, когда он сможет вернуться домой, в городок Игл‑Пойнт штата Индиана. Он больше не боится того, что может принести завтрашний день, и хочет лишь воссоединиться с любимой женой Лорой и начать новую жизнь.'
-        }
-        arr.push(item);
+export const MakeBooks = () => {
+    const dispatch = useDispatch();
+    const books = useSelector(getBookSelector);
+    const err = useSelector(error);
+    const loading = useSelector(loader);
+
+    useEffect(() => {
+        dispatch(loadBooks());
+    }, [])
+
+
+    if (loading) {
+        return (
+            <div><h2>Загрузка</h2></div>
+        )
     }
-    return arr;
-}
 
+    if (err) {
+        return (
+            <div>
+                <h2>Ошибка</h2>
+                <button onClick={() => dispatch(loadBooks())}>Перезагрузить страницу</button>
+            </div>
+        )
+    }
+    return books;
+}
 
 
 
