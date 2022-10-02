@@ -8,7 +8,6 @@
 
 }
 
-
 .bookItem {
     width: 10em;
     justify-self: center;
@@ -52,4 +51,79 @@
    font-weight: 400;
    font-size: 14px;
    line-height: 20px;
+}
+
+
+/*---------------------------------------------------------------------*/
+
+
+.center {
+    padding-left: calc(50% - 650px);
+    padding-right: calc(50% - 650px);
+}
+
+.main {
+
+}
+
+.main__heading {
+    margin-bottom: 32px;
+}
+
+.main__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main__left {
+    max-width: 927px;
+}
+
+.main__right {
+    width: 305px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main__right_heading {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    color: #000000;
+}
+
+.main__right_select {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+select {
+    width: 305px;
+    height: 42px;
+    box-shadow: 0px 0px 20px rgba(216, 206, 196, 0.2);
+    border-radius: 20px;
+    border: none;
+    padding: 0 40px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.8);
+    appearance: none;
+    background: url(/public/Images/arrow.png) no-repeat right;
+    background-position-x: calc(100% - 24px);
+    background-color: #FFFFFF;
+}
+
+option {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.8);
+    border: none;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px rgba(216, 206, 196, 0.2);
+    border-radius: 20px;
 }
