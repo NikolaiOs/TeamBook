@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom"
-import './bookToShow.css'
+import React from "react";
+import { Link } from "react-router-dom";
+import './bookToShow.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import React from "react";
 
 export const BookToShow = ({ book, book_className }) => {
 
@@ -20,7 +20,7 @@ export const BookToShow = ({ book, book_className }) => {
 export const BookToShowBooks = ({ book, book_className }) => {
 
     return (
-        <Link key={book.id} className={`book ${book_className}`} to={`/book/${book.id}`}>
+        <Link key={book.id} className={`book ${book_className}`} to={`/books/${book.id}`}>
             <div className="main__card">
                 <div className="main__card_img">
                     <img src={book.cover} alt="book cover"/>

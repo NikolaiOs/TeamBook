@@ -1,32 +1,29 @@
 import React, {Component} from "react";
-import '../book.css';
+import {useSelector} from "react-redux";
+import {getBookSelector} from "../../../Redux/reducers/bookReducer/bookSelector";
+import '../bookDescription.css';
+import {useParams} from "react-router-dom";
 
 function Annotation(props) {
+
+    const { bookId } = useParams()
+    const books = useSelector(getBookSelector)
+
     return (
-        <p className="text-description__item">
-            Вьетнамская война подходит к концу. Падение Сайгона лишь вопрос времени. Это
-            понимают все. Американцы медленно выводят свои войска из страны.
-            Теперь уже бывший президент отдал приказ к отступлению и бежал. Готовится к
-            эвакуации и один из высокопоставленных генералов, мечтавших превратить
-            Вьетнам в цветущий рай с американским образом жизни. Вместе с ним должен
-            покинуть родину и главный герой, самый преданный его офицер, правая рука, а по
-            совместительству двойной агент, работающий и на США, и на СССР. Он, за весь
-            роман ни разу не названный по имени, уже давно перестал различать своих и
-            чужих и никак не может понять, на чьей же стороне сражается. Опустошенный,
-            измотанный нескончаемой бойней, среди разрухи и хаоса он пытается понять, кто
-            же победил в этой войне и победил ли хоть кто‑то? Но впереди его ждут еще
-            большие трудности, ведь тот, кто сочувствовал всем, рискует рано или поздно
-            стать для всех врагом.
-        </p>
+        <p className="text-description__item">{books[bookId].description}</p>
     )
 }
 
 function Characteristics(props) {
+
+    const { bookId } = useParams()
+    const books = useSelector(getBookSelector)
+
     return (
         <div className="product-feature">
             <ul className="product-feature__list">
                 <li className="product-feature__list-item">
-                    Автор:<span className="product-feature__list-item-char">Нгуен Вьет Тхань</span>
+                    Автор:<span className="product-feature__list-item-char">{books[bookId].author}</span>
                 </li>
                 <li className="product-feature__list-item">
                     Переводчик:<span className="product-feature__list-item-char">Бабков Владимир</span>

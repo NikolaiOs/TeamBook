@@ -16,14 +16,9 @@ const Books = ({ books = MakeBooks() }) => {
     }
 
     return (
-        <div className=" no-gradient">
-            <div className="container">
+        <div className="no-gradient gradient">
+            <div className="container ">
                 <main>
-                    {/*{books.map(book => {*/}
-                    {/*    return <div>*/}
-                    {/*        <BookToShow key={book.id} book={book} book_className={'book_page'} />*/}
-                    {/*    </div>*/}
-                    {/*})}*/}
                     <section className="main center">
                         <h2 className="main__heading">Книги</h2>
                         <div className="main__row">

@@ -1,4 +1,4 @@
-import './book.css';
+import './bookDescription.css';
 import {Carousel2} from "../Carousel/carousel2";
 
 export function Carousel2BookPage() {
@@ -7,6 +7,7 @@ export function Carousel2BookPage() {
             <h2 className="wrapper-carousel__title-double">В коллекциях</h2>
             <Carousel2>
                 <div className="track-items__top">
+                    <div className="blackout"></div>
                     <div className="track-items__top-position">
                         <img className="track-item__top-img" src="/Images/Vietnam-War.png" alt="Вьетнамская война. Размышления"/>
                         <p className="track-item__top-title">
@@ -21,6 +22,7 @@ export function Carousel2BookPage() {
                     </div>
                 </div>
                 <div className="track-items__top">
+                    <div className="blackout"></div>
                     <div className="track-items__top-position">
                         <img className="track-item__top-img" src="/Images/Spy-books.png" alt="Книги про шпионов"/>
                         <p className="track-item__top-title">
@@ -34,9 +36,10 @@ export function Carousel2BookPage() {
                     </div>
                 </div>
                 <div className="track-items__top">
+                    <div className="blackout"></div>
                     <div className="track-items__top-position">
                         <img className="track-item__top-img" src="/Images/TheNewYorkTimes.png" alt="Бестселлеры по версии The New York Times"/>
-                        <p className="track-item__top-title track-item__top-title_color">
+                        <p className="track-item__top-title ">
                             Бестселлеры по версии The New York Times
                         </p>
                         <p className="track-item__top-rating">+246</p>
@@ -47,6 +50,7 @@ export function Carousel2BookPage() {
                     </div>
                 </div>
                 <div className="track-items__top">
+                    <div className="blackout"></div>
                     <div className="track-items__top-position">
                         <img className="track-item__top-img" src="/Images/Vietnam-War.png" alt="Вьетнамская война. Размышления"/>
                         <p className="track-item__top-title">
@@ -61,6 +65,7 @@ export function Carousel2BookPage() {
                     </div>
                 </div>
                 <div className="track-items__top">
+                    <div className="blackout"></div>
                     <div className="track-items__top-position">
                         <img className="track-item__top-img" src="/Images/Spy-books.png" alt="Книги про шпионов"/>
                         <p className="track-item__top-title">
@@ -74,9 +79,10 @@ export function Carousel2BookPage() {
                     </div>
                 </div>
                 <div className="track-items__top">
+                    <div className="blackout"></div>
                     <div className="track-items__top-position">
                         <img className="track-item__top-img" src="/Images/TheNewYorkTimes.png" alt="Бестселлеры по версии The New York Times"/>
-                        <p className="track-item__top-title track-item__top-title_color">
+                        <p className="track-item__top-title ">
                             Бестселлеры по версии The New York Times
                         </p>
                         <p className="track-item__top-rating">+246</p>
@@ -87,6 +93,7 @@ export function Carousel2BookPage() {
                     </div>
                 </div>
                 <div className="track-items__top">
+                    <div className="blackout"></div>
                     <div className="track-items__top-position">
                         <img className="track-item__top-img" src="/Images/Vietnam-War.png" alt="Вьетнамская война. Размышления"/>
                         <p className="track-item__top-title">
@@ -101,6 +108,7 @@ export function Carousel2BookPage() {
                     </div>
                 </div>
                 <div className="track-items__top">
+                    <div className="blackout"></div>
                     <div className="track-items__top-position">
                         <img className="track-item__top-img" src="/Images/Spy-books.png" alt="Книги про шпионов"/>
                         <p className="track-item__top-title">
@@ -114,9 +122,10 @@ export function Carousel2BookPage() {
                     </div>
                 </div>
                 <div className="track-items__top">
+                    <div className="blackout"></div>
                     <div className="track-items__top-position">
                         <img className="track-item__top-img" src="/Images/TheNewYorkTimes.png" alt="Бестселлеры по версии The New York Times"/>
-                        <p className="track-item__top-title track-item__top-title_color">
+                        <p className="track-item__top-title ">
                             Бестселлеры по версии The New York Times
                         </p>
                         <p className="track-item__top-rating">+246</p>

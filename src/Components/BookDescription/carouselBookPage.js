@@ -1,4 +1,4 @@
-import './book.css';
+import './bookDescription.css';
 import { Carousel } from '../Carousel/carousel';
 
 export function CarouselBookPage() {

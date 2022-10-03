@@ -37,13 +37,13 @@ export const BookPage = () => {
     const scroll = () => {
         const main = document.getElementById('main');
         main.scrollLeft += 1200 + 16;
-            setValue(prev => prev + 1);
+        setValue(prev => prev + 1);
     }
 
     const scrollBack = () => {
         const main = document.getElementById('main');
         main.scrollLeft -= 1200 + 16;
-            setValue(prev => prev - 1);
+        setValue(prev => prev - 1);
     }
 
     const handleRead = (e) => {
@@ -113,34 +113,34 @@ export const BookPage = () => {
                 </div>
             </section>
             {isInit ? (
-            <h1 style={{textAlign: 'center', marginTop: '100px', marginBottom: '100px'}}><Button variant='contained' onClick={handleRead}>Читать</Button></h1>
-                ) : (
-            <div style={{display: "flex"}}>
-                <Button onClick={scrollBack}><img src='Vector.svg' alt=''/></Button>
-                <Container sx={{ maxWidth: '1280px',
-                    padding: '40px 78px' }}>
-                    <div className='chapter' style={{ display: 'flex',
-                        justifyContent: 'space-around', marginBottom: '10px' }}>
-                        <h4>{books[bookId].author}</h4>
-                        <h4>{books[bookId].name}</h4>
-                    </div>
-                    <Box id='main' sx={{columnCount: 2,
-                        columnGap: '64px',
-                        overflowY: 'auto',
-                        height: '772px',
-                        columnWidth: '544px',
-                        textAlign: 'justify'}}
-                         ref={ref}>
-                        <CssBaseline/>
-                        {books[bookId].text}
-                    </Box>
-                    <div>
-                        <h5 style={{textAlign: "center"}}>Страница {value}</h5>
-                    </div>
-                </Container>
-                <Button onClick={scroll}><img src='Vector2.svg' alt=''/></Button>
-            </div>
-                )}
+                <h1 style={{textAlign: 'center', marginTop: '100px', marginBottom: '100px'}}><Button variant='contained' onClick={handleRead}>Читать</Button></h1>
+            ) : (
+                <div style={{display: "flex"}}>
+                    <Button onClick={scrollBack}><img src='Vector.svg' alt=''/></Button>
+                    <Container sx={{ maxWidth: '1280px',
+                        padding: '40px 78px' }}>
+                        <div className='chapter' style={{ display: 'flex',
+                            justifyContent: 'space-around', marginBottom: '10px' }}>
+                            <h4>{books[bookId].author}</h4>
+                            <h4>{books[bookId].name}</h4>
+                        </div>
+                        <Box id='main' sx={{columnCount: 2,
+                            columnGap: '64px',
+                            overflowY: 'auto',
+                            height: '772px',
+                            columnWidth: '544px',
+                            textAlign: 'justify'}}
+                             ref={ref}>
+                            <CssBaseline/>
+                            {books[bookId].text}
+                        </Box>
+                        <div>
+                            <h5 style={{textAlign: "center"}}>Страница {value}</h5>
+                        </div>
+                    </Container>
+                    <Button onClick={scroll}><img src='Vector2.svg' alt=''/></Button>
+                </div>
+            )}
             <Box component='footer' sx={{flexGrow: 1, display: 'flex', justifyContent: 'center'}}>
                 <Button style={{borderRadius: 30, backgroundColor: '#A7A7A7', color: 'black'}}>написать комментарий</Button>
             </Box>

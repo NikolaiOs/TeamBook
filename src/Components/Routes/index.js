@@ -13,6 +13,8 @@ import { isAuthed, usersList } from "../../Redux/user/actions";
 import { User } from "../../Pages/User";
 import { READER_LINK } from "../../constants";
 import { BookPage } from "../BookPage/book";
+import {BookDescription} from "../BookDescription/bookDescription";
+
 const Router = () => {
 
 
@@ -38,6 +40,7 @@ const Router = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="books" element={<Books />} ></Route>
+                    <Route path="books/:bookId" element={<BookDescription />} />
                     <Route path="book/:bookId" element={<BookPage />} />
                     <Route path="freeBooks" element={<FreeBooks />} />
                     <Route path="genres" element={<Genres />} />
